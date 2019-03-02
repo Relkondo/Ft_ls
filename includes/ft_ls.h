@@ -2,34 +2,58 @@
 # define FT_LS_H
 
 # include "libft.h"
+# include <dirent.h>
+# include <stdbool.h>
+# include <time.h>
 
-# define BUF_SIZE 90
-# define F_SHARP		(1 << 0)
-# define F_SPACE		(1 << 1)
-# define F_PLUS			(1 << 2)
-# define F_MINUS		(1 << 3)
-# define F_ZERO			(1 << 4)
-# define F_PREZERO		(1 << 5)
-# define F_UPCASE		(1 << 6)
-# define F_SHORT		(1 << 7)
-# define F_LONG			(1 << 8)
-# define F_LONG2		(1 << 9)
-# define F_CHAR			(1 << 10)
-# define F_INTMAX		(1 << 11)
-# define F_SIZET		(1 << 12)
-# define F_PRECI		(1 << 13)
 
-typedef struct		s_lsbox
+# define ALL_OPT		"ABCFGHLOPRSTUWabcdefghiklmnopqrstuwx1"
+# define SIX_MONTHS		15768000
+
+typedef struct			s_opt
 {
-	char			**argv;
-	char			**argv_opt;
-	char			argc;
-	time_t			now;
-	time_t			6m_ago;
-	char			*nomalloc;
-	int				nb_opt;
-}					t_lsbox;
+		unsigned char	a;
+		unsigned char	c;
+		unsigned char	d;
+		unsigned char	f;
+		unsigned char	g;
+		unsigned char	i;
+		unsigned char	l;
+		unsigned char	o;
+		unsigned char	p;
+		unsigned char	r;
+		unsigned char	t;
+		unsigned char	u;
+		unsigned char	x;
+		unsigned char	A;
+		unsigned char	F;
+		unsigned char	G;
+		unsigned char	N;
+		unsigned char	R;
+		unsigned char	S;
+		unsigned char	T;
+		unsigned char	U;
+		unsigned char	one;
+}						t_opt;
 
-void				print_do(t_ftp *p, long double flt);
+typedef struct			s_lsbox
+{
+		char				**argv;
+		char				**argv_opt;
+		char				argc;
+		time_t				now;
+		time_t				six_months_ago;
+		int					nb_opt;
+		t_opt				opt;
+}						t_lsbox;
+
+t_lsbox					init_lsbox(int argc, char **argv);
+void					parsing(t_lsbox *lsbox);
+int						main(int argc, char **argv);
+void					opt_error(t_lsbox *lsbox, char c);
+int						count_opt(t_lsbox *lsbox);
+void					register_options(t_lsbox *lsbox);
+void					free_lsbox(t_lsbox *lsbox);
+void					ls_error(t_lsbox *lsbox, char *str);
 
 #endif

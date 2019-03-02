@@ -1,0 +1,39 @@
+RED='\033[1;31m'
+GRE='\033[1;32m'
+LCY='\033[1;36m'
+NC='\033[0m'
+PAR=4
+BEG="#ifndef "
+BEG2="# define "
+END="#endif"
+
+if [[ -z "$1" ]] || [[ -z "$2" ]]
+	then
+	echo "${RED}✗ ${NC}usage: ./proto-list <sources folder> <file.h>"
+	exit 1
+fi
+
+let "i = 0"
+tabs=""
+while [ $i -lt $PAR ]
+	do
+		tabs="$tabs	"
+		let "i = i + 1"
+done
+
+lines=$(cat $1/*.c | grep '^\w.*$' | grep -v '^static' | sed "s/	\{1,\}/$tabs/g"| sed 's/$/;/')
+let "nbl=$(echo "$lines" | wc -l)"
+if [ -e $1/$2 ]
+	then
+	echo "$(cat $1/$2 | egrep '^\w.*$|^			' | grep -v '^typedef')" >> toremvsecurite.txt
+	tokeep=$(cat $1/$2 | grep -v "$END" | grep -Fvxf toremvsecurite.txt) 
+	list="$tokeep\n\n$lines\n\n$END"
+else
+	echo "${GRE}✓ ${LCY}$2${NC} created"
+	name=$(echo "$2" | tr '[:lower:]' '[:upper:]' | tr '.' '_')
+	list="\n$BEG$name\n$BEG2$name\n\n$lines\n\n$END"
+fi
+rm -f $1/$2
+rm -f toremvsecurite.txt
+echo "$list" >> $1/$2
+echo "${GRE}✓ ${RED}$nbl ${NC}prototypes were copied to your ${LCY}$2${NC}."

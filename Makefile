@@ -2,6 +2,8 @@
 NAME = ft_ls
 
 SRCS = main.c \
+	   parse.c \
+	   support.c \
 
 OBJS = $(SRCS:.c=.o)
 
@@ -10,9 +12,7 @@ HEADER = ft_ls.h
 all : $(NAME)
 
 $(NAME) : lib $(OBJS)
-	@cp libft/libft.a ./$(NAME)
-	@ar rc $(NAME) $(OBJS)
-	@ranlib $(NAME)
+	@gcc -o $(NAME) $(OBJS) -I libft/includes -L libft/ -lft
 
 %.o : %.c includes/$(HEADER)
 	@clang -Wall -Wextra -Werror -I includes -c $< -o $@
@@ -30,11 +30,8 @@ re : fclean all
 lib :
 	@make -C libft/
 
-comp : $(NAME) 
-	clang main.c -fsanitize=address -g $(NAME) -Iincludes
-	
-test : comp
-	./a.out
+test : $(NAME)
+	./$(NAME)
 
 push : fclean
 	@git add -A

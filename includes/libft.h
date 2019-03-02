@@ -13,12 +13,77 @@
 #ifndef LIBFT_H
 # define LIBFT_H
 
+//# include "ft_printf.h"
 # include <unistd.h>
 # include <string.h>
 # include <stdlib.h>
-# include <stdio.h>
 
-# define BUFF_SIZE 42
+
+# define BUFF_SIZE			92
+# define O_a				(1 << 0)
+# define O_b				(1 << 1)
+# define O_c				(1 << 2)
+# define O_d				(1 << 3)
+# define O_e				(1 << 4)
+# define O_f				(1 << 5)
+# define O_g				(1 << 6)
+# define O_h				(1 << 7)
+# define O_i				(1 << 8)
+# define O_j				(1 << 9)
+# define O_k				(1 << 10)
+# define O_l				(1 << 11)
+# define O_m				(1 << 12)
+# define O_n				(1 << 13)
+# define O_o				(1 << 14)
+# define O_p				(1 << 15)
+# define O_q				(1 << 16)
+# define O_r				(1 << 17)
+# define O_s				(1 << 18)
+# define O_t				(1 << 19)
+# define O_u				(1 << 20)
+# define O_v				(1 << 21)
+# define O_w				(1 << 22)
+# define O_x				(1 << 23)
+# define O_y				(1 << 24)
+# define O_z				(1 << 25)
+# define O_A				(1 << 26)
+# define O_B				(1 << 27)
+# define O_C				(1 << 28)
+# define O_D				(1 << 29)
+# define O_E				(1 << 30)
+# define O_F				(1 << 31)
+# define O_G				(1 << 32)
+# define O_H				(1 << 33)
+# define O_I				(1 << 34)
+# define O_J				(1 << 35)
+# define O_K				(1 << 36)
+# define O_L				(1 << 37)
+# define O_M				(1 << 38)
+# define O_N				(1 << 39)
+# define O_O				(1 << 40)
+# define O_P				(1 << 41)
+# define O_Q				(1 << 42)
+# define O_R				(1 << 43)
+# define O_S				(1 << 44)
+# define O_T				(1 << 45)
+# define O_U				(1 << 46)
+# define O_V				(1 << 47)
+# define O_W				(1 << 48)
+# define O_X				(1 << 49)
+# define O_Y				(1 << 50)
+# define O_Z				(1 << 51)
+# define O_0				(1 << 52)
+# define O_1				(1 << 53)
+# define O_2				(1 << 54)
+# define O_3				(1 << 55)
+# define O_4				(1 << 56)
+# define O_5				(1 << 57)
+# define O_6				(1 << 58)
+# define O_7				(1 << 59)
+# define O_8				(1 << 60)
+# define O_9				(1 << 61)
+# define O_OTHER			(1 << 62)
+# define O_ERROR			(1 << 63)
 
 typedef	struct		s_chain
 {
@@ -44,7 +109,10 @@ void				*ft_memchr(const void *s, int c, size_t n);
 int					ft_memcmp(const void *s1, const void *s2, size_t n);
 size_t				ft_strlen(const char *s);
 size_t				ft_strnlen(const char *s, char c);
-char				*ft_strdup(const char *s1);
+char				*ft_strdup(const char *s);
+char				*ft_strndup(const char *s, size_t n);
+char				**ft_strdup_p(char **s);
+char				**ft_strndup_p(char **s, size_t n);
 char				*ft_strcpy(char *dst, const char *src);
 char				*ft_strncpy(char *dst, const char *src, size_t len);
 char				*ft_strcat(char *s1, const char *s2);
@@ -113,5 +181,6 @@ int					get_next_line(const int fd, char **line);
 int					ft_power(int nbr, int power);
 void				ft_putstab(char **tab);
 void				ft_align_right(char *str);
+unsigned long long	ft_options(char **argv, char *all_opt);
 
 #endif

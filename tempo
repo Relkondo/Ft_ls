@@ -1,0 +1,25 @@
+{
+	lsbox->opt.a =  0;
+	lsbox->opt.c =  0;
+	lsbox->opt.d =  0;
+	lsbox->opt.f =  0;
+	lsbox->opt.g =  0;
+	lsbox->opt.i =  0;
+	lsbox->opt.l =  0;
+	lsbox->opt.o =  0;
+	lsbox->opt.p =  0;
+	lsbox->opt.r =  0;
+	lsbox->opt.t =  0;
+	lsbox->opt.u =  0;
+	lsbox->opt.x =  0;
+	lsbox->opt.A =  0;
+	lsbox->opt.F =  0;
+	lsbox->opt.G =  0;
+	lsbox->opt.N =  0;
+	lsbox->opt.R =  0;
+	lsbox->opt.S =  0;
+	lsbox->opt.T =  0;
+	lsbox->opt.U =  0;
+	lsbox->opt.one =  0;
+	printf("letter %c, opt.a : %d\n", c, lsbox->opt.a);
+}

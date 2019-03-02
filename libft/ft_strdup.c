@@ -22,6 +22,25 @@ char	*ft_strdup(const char *src)
 	i = -1;
 	while (src[++i])
 		res[i] = src[i];
-	res[i] = 0;
+	res[i] = '\0';
 	return (res);
 }
+
+char	**ft_strdup_p(char **src)
+{
+	char	**res;
+	int		len;
+	int		i;
+
+	len = 0;
+	while (src[len])
+		len++;
+	if (!(res = (char **)malloc(sizeof(char *) * len + 1)))
+		return (0);
+	i = -1;
+	while (src[++i])
+		res[i] = src[i];
+	res[i] = NULL;
+	return (res);
+}
+
