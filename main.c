@@ -26,12 +26,6 @@ int			main(int argc, char **argv)
 
 		lsbox = init_lsbox(argc, argv);
 		parsing(&lsbox);
-		lsbox.argv--;
-		while (++lsbox.argv && *lsbox.argv)
-			printf("arg : %s\n", *lsbox.argv);
-		lsbox.argv_opt--;
-		while (++lsbox.argv_opt && *lsbox.argv_opt)
-			printf("arg_opt : %s\n", *lsbox.argv_opt);
-			printf("lsbox.opt. a: %d F: %d u: %d A: %d \n", lsbox.opt.a, lsbox.opt.F, lsbox.opt.u, lsbox.opt.A);
+		attributes(lsbox);
 		return (0);
 }
