@@ -25,7 +25,7 @@
 # define ALL_OPT		"ABCFGHLOPRSTUWabcdefghiklmnopqrstuwx1"
 # define SIX_MONTHS		15768000
 # define RL_BUFSIZE	1024
-# define NUM_FILES	"--------------\nFiles: %d\n"
+# define NUM_FILES	"--------------Files: %d"
 # define CHRSIZELEN	8
 
 # define LEN_INO	1
@@ -66,16 +66,16 @@
 # define TYPE_SOCK	0140000
 # define TYPE_WHT	0160000
 
-# define COL_REG	"\x1b[0m"
-# define COL_DIR	"\x1b[1m\x1b[36m"
-# define COL_IFO	"\x1b[33m"
-# define COL_CHR	"\x1b[34;43m"
-# define COL_BLK	"\x1b[34;46m"
-# define COL_LNK	"\x1b[35m"
-# define COL_SOCK	"\x1b[32m"
-# define COL_WHT	"\x1b[31m"
-# define COL_EXE	"\x1b[31m"
-# define COL_CLR	"\x1b[0m"
+# define COL_REG	"[0m"
+# define COL_DIR	"[1m[36m"
+# define COL_IFO	"[33m"
+# define COL_CHR	"[34;43m"
+# define COL_BLK	"[34;46m"
+# define COL_LNK	"[35m"
+# define COL_SOCK	"[32m"
+# define COL_WHT	"[31m"
+# define COL_EXE	"[31m"
+# define COL_CLR	"[0m"
 
 typedef struct		s_attr
 {
@@ -168,13 +168,30 @@ typedef struct			s_lsbox
 		bool			(*sort_function)(struct s_frame *frame);
 }						t_lsbox;
 
-t_lsbox					init_lsbox(int argc, char **argv);
-void					parsing(t_lsbox *lsbox);
-int						main(int argc, char **argv);
-void					opt_error(t_lsbox *lsbox, char c);
-int						count_opt(t_lsbox *lsbox);
-void					register_options(t_lsbox *lsbox);
-void					free_lsbox(t_lsbox *lsbox);
-void					ls_error(t_lsbox *lsbox, char *str);
+void				assign_sort(t_lsbox *lsbox);
+void				read_f(t_lsbox *lsbox, t_args *args_ch, struct stat *func);
+void				attributes(t_lsbox *lsbox);
+void				do_ls(t_lsbox *lsbox, t_args *args);
+void				loop_files(t_lsbox *lsbox);
+void				loop_no_file(t_lsbox *lsbox);
+void				loop_dirs(t_lsbox *lsbox);
+void				loop_init(t_lsbox *lsbox);
+t_lsbox				init_lsbox(int argc, char **argv);
+void				parsing(t_lsbox *lsbox);
+int				main(int argc, char **argv);
+void				opt_error(t_lsbox *lsbox, char c);
+int				count_opt(t_lsbox *lsbox);
+void				fetch(t_lsbox *lsbox, char c);
+void				init_fetch(t_lsbox *lsbox);
+void				register_options(t_lsbox *lsbox);
+void				sort(t_lsbox *lsbox);
+bool				sort_alpha(t_lsbox *lsbox);
+bool				sort_size(t_lsbox *lsbox);
+bool				sort_time_r(t_lsbox *lsbox);
+bool				sort_alpha_r(t_lsbox *lsbox);
+bool				sort_size_r(t_lsbox *lsbox);
+bool				sort_time(t_lsbox *lsbox);
+void				free_lsbox(t_lsbox *lsbox);
+void				ls_error(t_lsbox *lsbox, char *str);
 
 #endif
