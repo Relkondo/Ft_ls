@@ -32,12 +32,38 @@ void		parsing(t_lsbox *lsbox)
 		register_options(lsbox);
 }
 
+static void	check_headers(t_lsbox *lsbox)
+{
+		t_args_ch			*args;
+		int				headers;
+		int				not_dir;
+
+		args = lsbox->args;
+		headers = 0;
+		not_dir = 0;
+		while (args && !lsbox->headers)
+		{
+				if (!not_dir && !args->attr.dir && !lsbox->option.d)
+						not_dir++;
+				if (args->attr.dir && !lsbox->option.d)
+						headers++;
+				if (headers > 1 || (headers && not_dir))
+						lsbox->headers = 1;
+				args = args->next;
+		}
+}
+
 int			main(int argc, char **argv)
 {
 		t_lsbox		lsbox;
 
 		lsbox = init_lsbox(argc, argv);
 		parsing(&lsbox);
-		attributes(lsbox);
+		lsbox->current_args = lsbox->args;
+		attributes(&lsbox);
+		sort(&lsbox);
+		lsbox->args = lsbox->current_args;
+		check_headers(lsbox);
+		loop_init(lsbox);
 		return (0);
 }
