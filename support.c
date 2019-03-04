@@ -59,6 +59,16 @@ t_args_ch				*create_args(void)
 	return (args);
 }
 
+bool				is_executeable(t_args_ch *args)
+{
+	int				type;
+
+	type = args->data.type;
+	if ((type & 1) == 1 || (type >> 3 & 1) == 1 || (type >> 6 & 1) == 1)
+		return (true);
+	return (false);
+}
+
 void				path(t_lsbox *lsbox, t_args_ch *args, char *path, char *name)
 {
 	char			*new_path;

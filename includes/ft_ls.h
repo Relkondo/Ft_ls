@@ -166,12 +166,12 @@ typedef struct			s_lsbox
 		t_args_ch			*head;
 		t_args_ch			*track;
 
-		bool			(*sort_function)(struct s_frame *frame);
+		bool			(*sort_function)(struct s_lsbox *lsbox);
 }						t_lsbox;
 
 typedef struct		s_read_dir
 {
-		t_frame			*frame;
+		t_lsbox			*lsbox;
 		t_args			*args;
 		t_args			*tmp;
 		t_args			*head;
@@ -190,7 +190,17 @@ bool				is_executeable(t_args_ch *args);
 void				calc_len_file_name(t_lsbox *lsbox, t_args_ch *args);
 void				calc_len_group(t_lsbox *lsbox, t_args_ch *args);
 void				calc_len_ino(t_lsbox *lsbox, t_args_ch *args);
-void				config_options(t_frame *frame);
+void				config_opts(t_lsbox *lsbox);
+void				links(t_lsbox *lsbox, t_args *args);
+void				ino(t_lsbox *lsbox, t_args *args);
+void				user_and_group(t_lsbox *lsbox, t_args *args);
+void				size(t_lsbox *lsbox, t_args *args);
+void				display(t_lsbox *lsbox, t_args *args);
+void				print_path(t_lsbox *lsbox, t_args *args, bool do_print);
+void				print_spaces(int diff);
+int					get_diff(t_lsbox *lsbox, char *str, long long num, int flag);
+void				show_time(t_lsbox *lsbox, t_args *args);
+void				file_name(t_lsbox *lsbox, t_args_ch *args);
 void				free(t_lsbox *lsbox, t_args_ch **head);
 void				ls_loop(t_lsbox *lsbox, t_args_ch *args);
 void				loop_files(t_lsbox *lsbox);
@@ -199,9 +209,9 @@ void				loop_dirs(t_lsbox *lsbox);
 void				loop_init(t_lsbox *lsbox);
 t_lsbox				init_lsbox(int argc, char **argv);
 void				parsing(t_lsbox *lsbox);
-int				main(int argc, char **argv);
+int					main(int argc, char **argv);
 void				opt_error(t_lsbox *lsbox, char c);
-int				count_opt(t_lsbox *lsbox);
+int					count_opt(t_lsbox *lsbox);
 void				fetch(t_lsbox *lsbox, char c);
 void				init_fetch(t_lsbox *lsbox);
 void				register_opts(t_lsbox *lsbox);
@@ -215,7 +225,10 @@ bool				sort_size_r(t_lsbox *lsbox);
 bool				sort_time_r(t_lsbox *lsbox);
 void				config_opts(t_lsbox *lsbox);
 void				ls_error(t_lsbox *lsbox, char *str);
-t_args_ch				*create_args(void);
+void				no_file(t_lsbox *lsbox, t_args_ch *args);
+t_args_ch			*create_args(void);
+bool				is_executeable(t_args_ch *args);
 void				path(t_lsbox *lsbox, t_args_ch *args, char *path, char *name);
+void				type(t_lsbox *lsbox, t_args_ch *args);
 
 #endif
