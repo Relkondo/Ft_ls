@@ -42,6 +42,13 @@ void				ls_error(t_lsbox *lsbox, char *str)
 	exit(1);
 }
 
+void				no_file(t_lsbox *lsbox, t_args_ch *args)
+{
+	if (args->attr.no_file && lsbox)
+		ft_printf("ft_ls: %s: No such file or directory\n", args->attr.str);
+	args = args->next;
+}
+
 t_args_ch				*create_args(void)
 {
 	t_args_ch			*args;

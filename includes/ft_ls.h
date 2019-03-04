@@ -25,7 +25,8 @@
 # define ALL_OPT		"ABCFGHLOPRSTUWabcdefghiklmnopqrstuwx1"
 # define SIX_MONTHS		15768000
 # define RL_BUFSIZE	1024
-# define NUM_FILES	"--------------Files: %d"
+# define NUM_FILES	"--------------\nFiles:\n%d
+"
 # define CHRSIZELEN	8
 
 # define LEN_INO	1
@@ -66,18 +67,18 @@
 # define TYPE_SOCK	0140000
 # define TYPE_WHT	0160000
 
-# define COL_REG	"[0m"
-# define COL_DIR	"[1m[36m"
-# define COL_IFO	"[33m"
-# define COL_CHR	"[34;43m"
-# define COL_BLK	"[34;46m"
-# define COL_LNK	"[35m"
-# define COL_SOCK	"[32m"
-# define COL_WHT	"[31m"
-# define COL_EXE	"[31m"
-# define COL_CLR	"[0m"
+# define COL_IFO	"\x1b[33m"
+# define COL_CHR	"\x1b[34;43m"
+# define COL_DIR	"\x1b[1m\x1b[36m"
+# define COL_BLK	"\x1b[34;46m"
+# define COL_REG	"\x1b[0m"
+# define COL_LNK	"\x1b[35m"
+# define COL_SOCK	"\x1b[32m"
+# define COL_WHT	"\x1b[31m"
+# define COL_EXE	"\x1b[31m"
+# define COL_CLR	"\x1b[0m"
 
-typedef struct		s_attr
+typedef struct			s_attr
 {
 		char			*str;
 		char			*path;
@@ -105,13 +106,13 @@ typedef struct		s_attr
 		unsigned char	lnk		: 1;
 		unsigned char	sock	: 1;
 		unsigned char	wht		: 1;
-}					t_attr;
+}						t_attr;
 
-typedef struct		s_args_ch
+typedef struct			s_args_ch
 {	
 		t_attr			attr;
 		struct s_args	*next;
-}					t_args_ch;
+}						t_args_ch;
 
 typedef struct			s_opt
 {
@@ -168,10 +169,30 @@ typedef struct			s_lsbox
 		bool			(*sort_function)(struct s_frame *frame);
 }						t_lsbox;
 
-void				assign_sort(t_lsbox *lsbox);
+typedef struct		s_read_dir
+{
+		t_frame			*frame;
+		t_args			*args;
+		t_args			*tmp;
+		t_args			*head;
+		t_args			*last_args;
+		DIR				*directory;
+		struct dirent	*file;
+}					t_read_dir;
+
 void				read_f(t_lsbox *lsbox, t_args *args_ch, struct stat *func);
 void				attributes(t_lsbox *lsbox);
-void				do_ls(t_lsbox *lsbox, t_args *args);
+void				calc_len_links(t_lsbox *lsbox, t_args_ch_ch *args);
+void				calc_len_size(t_lsbox *lsbox, t_args_ch *args);
+void				calc_len_user(t_lsbox *lsbox, t_args_ch *args);
+void				calculate_number_of_columns(t_lsbox *lsbox);
+bool				is_executeable(t_args_ch *args);
+void				calc_len_file_name(t_lsbox *lsbox, t_args_ch *args);
+void				calc_len_group(t_lsbox *lsbox, t_args_ch *args);
+void				calc_len_ino(t_lsbox *lsbox, t_args_ch *args);
+void				config_options(t_frame *frame);
+void				free(t_lsbox *lsbox, t_args_ch **head);
+void				ls_loop(t_lsbox *lsbox, t_args_ch *args);
 void				loop_files(t_lsbox *lsbox);
 void				loop_no_file(t_lsbox *lsbox);
 void				loop_dirs(t_lsbox *lsbox);
@@ -183,15 +204,18 @@ void				opt_error(t_lsbox *lsbox, char c);
 int				count_opt(t_lsbox *lsbox);
 void				fetch(t_lsbox *lsbox, char c);
 void				init_fetch(t_lsbox *lsbox);
-void				register_options(t_lsbox *lsbox);
+void				register_opts(t_lsbox *lsbox);
 void				sort(t_lsbox *lsbox);
+void				assign_sort(t_lsbox *lsbox);
 bool				sort_alpha(t_lsbox *lsbox);
 bool				sort_size(t_lsbox *lsbox);
-bool				sort_time_r(t_lsbox *lsbox);
+bool				sort_time(t_lsbox *lsbox);
 bool				sort_alpha_r(t_lsbox *lsbox);
 bool				sort_size_r(t_lsbox *lsbox);
-bool				sort_time(t_lsbox *lsbox);
-void				free_lsbox(t_lsbox *lsbox);
+bool				sort_time_r(t_lsbox *lsbox);
+void				config_opts(t_lsbox *lsbox);
 void				ls_error(t_lsbox *lsbox, char *str);
+t_args_ch				*create_args(void);
+void				path(t_lsbox *lsbox, t_args_ch *args, char *path, char *name);
 
 #endif
