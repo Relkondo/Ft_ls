@@ -91,7 +91,7 @@ void	init_fetch(t_lsbox *lsbox)
 	lsbox->opt.one =  0;
 }
 
-void	register_options(t_lsbox *lsbox)
+void	register_opts(t_lsbox *lsbox)
 {
 		char	**argv_opt;
 		char	*opt;

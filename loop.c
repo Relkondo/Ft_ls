@@ -18,13 +18,13 @@ static bool			read_directory(t_read_dir *read_dir)
 		if (!read_dir->head)
 			read_dir->head = read_dir->tmp;
 		else
-			read_dir->last_args->next = read_dir->tmp;
-		read_dir->last_args = read_dir->tmp;
+			read_dir->last_args_ch->next = read_dir->tmp;
+		read_dir->last_args_ch = read_dir->tmp;
 	}
 	return (true);
 }
 
-static t_args		*get_directory_contents(t_lsbox *lsbox, t_args *args)
+static t_args_ch		*get_directory_contents(t_lsbox *lsbox, t_args_ch *args)
 {
 	t_read_dir		read_dir;
 
@@ -45,9 +45,9 @@ static t_args		*get_directory_contents(t_lsbox *lsbox, t_args *args)
 	return (read_dir.head);
 }
 
-static void			check_headers(t_lsbox *lsbox, t_args *head)
+static void			check_headers(t_lsbox *lsbox, t_args_ch *head)
 {
-	t_args			*args;
+	t_args_ch			*args;
 
 	args = head;
 	while (args && !lsbox->headers)
@@ -58,19 +58,19 @@ static void			check_headers(t_lsbox *lsbox, t_args *head)
 	}
 }
 
-void				do_ls(t_lsbox *lsbox, t_args *args)
+void				ls_loop(t_lsbox *lsbox, t_args_ch *args)
 {
-	t_args			*head;
-	t_args			*tmp;
+	t_args_ch			*head;
+	t_args_ch			*tmp;
 
 	check_headers(lsbox, args);
 	print_path(lsbox, args, true);
 	if (!(head = get_directory_contents(lsbox, args)))
 		return ;
-	lsbox->current_args = head;
+	lsbox->current_args_ch = head;
 	get_attributes(lsbox);
 	sort(lsbox);
-	head = lsbox->current_args;
+	head = lsbox->current_args_ch;
 	loop_valid_dir(lsbox, head);
 	if (lsbox->option.up_r)
 	{

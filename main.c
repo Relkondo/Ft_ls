@@ -29,7 +29,8 @@ void		parsing(t_lsbox *lsbox)
 		lsbox->nb_opt = count_opt(lsbox);
 		lsbox->argv_opt = ft_strndup_p(lsbox->argv, lsbox->nb_opt);
 		lsbox->argv = ft_strndup_p(lsbox->argv + lsbox->nb_opt, lsbox->argc - lsbox->nb_opt);
-		register_options(lsbox);
+		register_opts(lsbox);
+		config_opts(frame);
 }
 
 static void	check_headers(t_lsbox *lsbox)
@@ -63,7 +64,8 @@ int			main(int argc, char **argv)
 		attributes(&lsbox);
 		sort(&lsbox);
 		lsbox->args = lsbox->current_args;
-		check_headers(lsbox);
-		loop_init(lsbox);
+		check_headers(&lsbox);
+		loop_init(&lsbox);
+		free(&lsbox);
 		return (0);
 }
