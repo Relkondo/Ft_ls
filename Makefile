@@ -6,16 +6,32 @@
 #    By: scoron <scoron@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/03/03 12:40:23 by scoron            #+#    #+#              #
-#    Updated: 2019/03/03 12:40:25 by scoron           ###   ########.fr        #
+#    Updated: 2019/03/04 23:24:17 by scoron           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 
 NAME = ft_ls
 
-SRCS = main.c \
+SRCS = attributes.c \
+	   calculate.c \
+	   calculate2.c \
+	   display.c \
+	   display2.c \
+	   file_name.c \
+	   free.c \
+	   loop.c \
+	   loop_files.c \
+	   loop_init.c \
+	   main.c \
 	   parse.c \
+	   sort.c \
+	   sort_assign.c \
+	   sort_func.c \
+	   sort_func_r.c \
 	   support.c \
+	   type.c \
+	   loop_valid_dir.c \
 
 OBJS = $(SRCS:.c=.o)
 

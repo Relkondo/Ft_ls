@@ -15,7 +15,7 @@ static void			treat_opt(char c, unsigned long long *opt, char *all_opt)
 		*opt |= (1 << 63);*/
 }
 
-unsigned long long	ft_options(char **argv, char *all_opt)
+unsigned long long	ft_opts(char **argv, char *all_opt)
 {
 	unsigned long long	opt;
 	char				*str;

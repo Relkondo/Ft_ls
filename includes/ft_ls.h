@@ -6,7 +6,7 @@
 /*   By: scoron <scoron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/03 12:40:38 by scoron            #+#    #+#             */
-/*   Updated: 2019/03/03 12:40:41 by scoron           ###   ########.fr       */
+/*   Updated: 2019/03/04 23:16:30 by scoron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define FT_LS_H
 
 # include "libft.h"
+# include "printf.h"
 # include <dirent.h>
 # include <stdbool.h>
 # include <time.h>
@@ -25,8 +26,8 @@
 # define ALL_OPT		"ABCFGHLOPRSTUWabcdefghiklmnopqrstuwx1"
 # define SIX_MONTHS		15768000
 # define RL_BUFSIZE	1024
-# define NUM_FILES	"--------------\nFiles:\n%d
-"
+# define NUM_FILES	"--------------\nFiles:\n%d"
+
 # define CHRSIZELEN	8
 
 # define LEN_INO	1
@@ -96,7 +97,7 @@ typedef struct			s_attr
 		time_t			c_time;
 		time_t			t_time;
 		time_t			u_time;
-		time_t			up_u_time;
+		time_t			U_time;
 		char			sym_path[RL_BUFSIZE + 1];
 		unsigned char	ifo		: 1;
 		unsigned char	chr		: 1;
@@ -108,11 +109,11 @@ typedef struct			s_attr
 		unsigned char	wht		: 1;
 }						t_attr;
 
-typedef struct			s_args_ch
+typedef struct			s_args
 {	
 		t_attr			attr;
 		struct s_args	*next;
-}						t_args_ch;
+}						t_args;
 
 typedef struct			s_opt
 {
@@ -161,12 +162,11 @@ typedef struct			s_lsbox
 		int				total_blocks;
 		int				width;
 		int				number_of_columns;
-		t_args_ch			*args;
-		t_args_ch			*current_args;
-		t_args_ch			*head;
-		t_args_ch			*track;
-
-		bool			(*sort_function)(struct s_lsbox *lsbox);
+		t_args			*args;
+		t_args			*current_args;
+		t_args			*head;
+		t_args			*track;
+		bool			(*sort_func)(struct s_lsbox *lsbox);
 }						t_lsbox;
 
 typedef struct		s_read_dir
@@ -180,16 +180,15 @@ typedef struct		s_read_dir
 		struct dirent	*file;
 }					t_read_dir;
 
-void				read_f(t_lsbox *lsbox, t_args *args_ch, struct stat *func);
 void				attributes(t_lsbox *lsbox);
-void				calc_len_links(t_lsbox *lsbox, t_args_ch_ch *args);
-void				calc_len_size(t_lsbox *lsbox, t_args_ch *args);
-void				calc_len_user(t_lsbox *lsbox, t_args_ch *args);
+void				calc_len_links(t_lsbox *lsbox, t_args *args);
+void				calc_len_size(t_lsbox *lsbox, t_args *args);
+void				calc_len_user(t_lsbox *lsbox, t_args *args);
 void				calculate_number_of_columns(t_lsbox *lsbox);
-bool				is_executeable(t_args_ch *args);
-void				calc_len_file_name(t_lsbox *lsbox, t_args_ch *args);
-void				calc_len_group(t_lsbox *lsbox, t_args_ch *args);
-void				calc_len_ino(t_lsbox *lsbox, t_args_ch *args);
+bool				is_executeable(t_args *args);
+void				calc_len_file_name(t_lsbox *lsbox, t_args *args);
+void				calc_len_group(t_lsbox *lsbox, t_args *args);
+void				calc_len_ino(t_lsbox *lsbox, t_args *args);
 void				config_opts(t_lsbox *lsbox);
 void				links(t_lsbox *lsbox, t_args *args);
 void				ino(t_lsbox *lsbox, t_args *args);
@@ -198,20 +197,22 @@ void				size(t_lsbox *lsbox, t_args *args);
 void				display(t_lsbox *lsbox, t_args *args);
 void				print_path(t_lsbox *lsbox, t_args *args, bool do_print);
 void				print_spaces(int diff);
-int					get_diff(t_lsbox *lsbox, char *str, long long num, int flag);
+int				get_diff(t_lsbox *lsbox, char *str, long long num, int flag);
 void				show_time(t_lsbox *lsbox, t_args *args);
-void				file_name(t_lsbox *lsbox, t_args_ch *args);
-void				free(t_lsbox *lsbox, t_args_ch **head);
-void				ls_loop(t_lsbox *lsbox, t_args_ch *args);
+void				file_name(t_lsbox *lsbox, t_args *args);
+void				free_args(t_lsbox *lsbox, t_args **head);
+void				free_ls(t_lsbox *lsbox);
+void				ls_loop(t_lsbox *lsbox, t_args *args);
 void				loop_files(t_lsbox *lsbox);
 void				loop_no_file(t_lsbox *lsbox);
 void				loop_dirs(t_lsbox *lsbox);
 void				loop_init(t_lsbox *lsbox);
+void				loop_valid_dir(t_lsbox *lsbox, t_args *head);
 t_lsbox				init_lsbox(int argc, char **argv);
 void				parsing(t_lsbox *lsbox);
-int					main(int argc, char **argv);
+int				main(int argc, char **argv);
 void				opt_error(t_lsbox *lsbox, char c);
-int					count_opt(t_lsbox *lsbox);
+int				count_opt(t_lsbox *lsbox);
 void				fetch(t_lsbox *lsbox, char c);
 void				init_fetch(t_lsbox *lsbox);
 void				register_opts(t_lsbox *lsbox);
@@ -225,10 +226,10 @@ bool				sort_size_r(t_lsbox *lsbox);
 bool				sort_time_r(t_lsbox *lsbox);
 void				config_opts(t_lsbox *lsbox);
 void				ls_error(t_lsbox *lsbox, char *str);
-void				no_file(t_lsbox *lsbox, t_args_ch *args);
-t_args_ch			*create_args(void);
-bool				is_executeable(t_args_ch *args);
-void				path(t_lsbox *lsbox, t_args_ch *args, char *path, char *name);
-void				type(t_lsbox *lsbox, t_args_ch *args);
+void				no_file(t_lsbox *lsbox, t_args *args);
+t_args				*create_args(void);
+bool				is_executeable(t_args *args);
+void				path(t_lsbox *lsbox, t_args *args, char *path, char *name);
+void				type(t_lsbox *lsbox, t_args *args);
 
 #endif

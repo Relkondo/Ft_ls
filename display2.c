@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   display2.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: scoron <scoron@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/03/04 21:43:26 by scoron            #+#    #+#             */
+/*   Updated: 2019/03/04 22:42:33 by scoron           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_ls.h"
 
 void			print_path(t_lsbox *lsbox, t_args *args, bool do_print)
@@ -64,8 +76,8 @@ static time_t		get_file_time(t_lsbox *lsbox, t_args *args)
 		return (args->attr.c_time);
 	if (lsbox->opt.u)
 		return (args->attr.u_time);
-	if (lsbox->opt.up_u)
-		return (args->attr.up_u_time);
+	if (lsbox->opt.U)
+		return (args->attr.U_time);
 	else
 		return (args->attr.t_time);
 }
@@ -79,9 +91,9 @@ void				show_time(t_lsbox *lsbox, t_args *args)
 	string = ctime(&time);
 	ft_printf("%3.3s ", string + 4);
 	ft_printf("%2.2s ", string + 8);
-	if (lsbox->opt.up_t)
+	if (lsbox->opt.T)
 		ft_printf("%.13s ", string + 11);
-	else if (time < lsbox->time_6_months_ago || time > lsbox->time_now)
+	else if (time < lsbox->six_months_ago || time > lsbox->now)
 		ft_printf("%5.4s ", string + 20);
 	else
 		ft_printf("%5.5s ", string + 11);

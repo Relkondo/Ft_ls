@@ -1,8 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   file_name.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: scoron <scoron@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/03/04 21:43:34 by scoron            #+#    #+#             */
+/*   Updated: 2019/03/04 22:43:08 by scoron           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_ls.h"
 
-static void			print_end_char(t_lsbox *lsbox, t_args_ch *args)
+static void			print_end_char(t_lsbox *lsbox, t_args *args)
 {
-	if (lsbox->opt.up_f)
+	if (lsbox->opt.F)
 	{
 		if (args->attr.ifo)
 			ft_putchar('|');
@@ -21,7 +33,7 @@ static void			print_end_char(t_lsbox *lsbox, t_args_ch *args)
 		ft_putchar('/');
 }
 
-static void			print_colour(t_args_ch *args)
+static void			print_colour(t_args *args)
 {
 	if (is_executeable(args))
 		ft_putstr(COL_EXE);
@@ -43,14 +55,14 @@ static void			print_colour(t_args_ch *args)
 	ft_putstr(COL_CLR);
 }
 
-void				file_name(t_lsbox *lsbox, t_args_ch *args)
+void				file_name(t_lsbox *lsbox, t_args *args)
 {
 	t_attr			*attr;
 	int				len;
 
 	attr = &args->attr;
 	len = attr->len_of_str;
-	if (lsbox->opt.up_g)
+	if (lsbox->opt.G)
 		print_colour(args);
 	else
 		ft_printf("%s", attr->str);

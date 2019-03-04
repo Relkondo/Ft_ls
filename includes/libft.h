@@ -6,14 +6,14 @@
 /*   By: scoron <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/08 08:34:59 by scoron            #+#    #+#             */
-/*   Updated: 2019/01/31 15:08:22 by scoron           ###   ########.fr       */
+/*   Updated: 2019/03/04 22:32:20 by scoron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
 
-//# include "ft_printf.h"
+# include "ft_printf.h"
 # include <unistd.h>
 # include <string.h>
 # include <stdlib.h>
@@ -181,6 +181,6 @@ int					get_next_line(const int fd, char **line);
 int					ft_power(int nbr, int power);
 void				ft_putstab(char **tab);
 void				ft_align_right(char *str);
-unsigned long long	ft_options(char **argv, char *all_opt);
+unsigned long long	ft_opts(char **argv, char *all_opt);
 
 #endif

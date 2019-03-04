@@ -6,7 +6,7 @@
 /*   By: scoron <scoron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/03 12:39:50 by scoron            #+#    #+#             */
-/*   Updated: 2019/03/03 12:39:57 by scoron           ###   ########.fr       */
+/*   Updated: 2019/03/04 23:08:59 by scoron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,12 +30,12 @@ void		parsing(t_lsbox *lsbox)
 		lsbox->argv_opt = ft_strndup_p(lsbox->argv, lsbox->nb_opt);
 		lsbox->argv = ft_strndup_p(lsbox->argv + lsbox->nb_opt, lsbox->argc - lsbox->nb_opt);
 		register_opts(lsbox);
-		config_opts(frame);
+		config_opts(lsbox);
 }
 
 static void	check_headers(t_lsbox *lsbox)
 {
-		t_args_ch			*args;
+		t_args			*args;
 		int				headers;
 		int				not_dir;
 
@@ -44,9 +44,9 @@ static void	check_headers(t_lsbox *lsbox)
 		not_dir = 0;
 		while (args && !lsbox->headers)
 		{
-				if (!not_dir && !args->attr.dir && !lsbox->option.d)
+				if (!not_dir && !args->attr.dir && !lsbox->opt.d)
 						not_dir++;
-				if (args->attr.dir && !lsbox->option.d)
+				if (args->attr.dir && !lsbox->opt.d)
 						headers++;
 				if (headers > 1 || (headers && not_dir))
 						lsbox->headers = 1;
@@ -60,12 +60,12 @@ int			main(int argc, char **argv)
 
 		lsbox = init_lsbox(argc, argv);
 		parsing(&lsbox);
-		lsbox->current_args = lsbox->args;
+		lsbox.current_args = lsbox.args;
 		attributes(&lsbox);
 		sort(&lsbox);
-		lsbox->args = lsbox->current_args;
+		lsbox.args = lsbox.current_args;
 		check_headers(&lsbox);
 		loop_init(&lsbox);
-		free(&lsbox);
+		free_ls(&lsbox);
 		return (0);
 }

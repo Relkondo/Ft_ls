@@ -1,7 +1,19 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   calculate2.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: scoron <scoron@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/03/04 21:43:08 by scoron            #+#    #+#             */
+/*   Updated: 2019/03/04 23:24:31 by scoron           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 
 #include "ft_ls.h"
 
-bool				is_executeable(t_args_ch *args)
+bool				is_executeable(t_args *args)
 {
 	int				type;
 
@@ -11,7 +23,7 @@ bool				is_executeable(t_args_ch *args)
 	return (false);
 }
 
-void				calc_len_file_name(t_lsbox *lsbox, t_args_ch *args)
+void				calc_len_file_name(t_lsbox *lsbox, t_args *args)
 {
 	int				len;
 	t_attr			*attr;
@@ -19,18 +31,18 @@ void				calc_len_file_name(t_lsbox *lsbox, t_args_ch *args)
 	attr = &args->attr;
 	len = ft_strlen(attr->str);
 	attr->len_of_str = len;
-	if (lsbox->option.up_f && (attr->dir || attr->lnk || attr->sock || attr->wht
+	if (lsbox->opt.F && (attr->dir || attr->lnk || attr->sock || attr->wht
 				|| attr->ifo || is_executeable(args)))
 		attr->len_of_str++;
-	else if (lsbox->option.p && attr->dir)
+	else if (lsbox->opt.p && attr->dir)
 		attr->len_of_str++;
-	if (lsbox->option.up_f || lsbox->option.p)
+	if (lsbox->opt.F || lsbox->opt.p)
 		len++;
 	if (len > lsbox->len_file_name)
 		lsbox->len_file_name = len;
 }
 
-void				calc_len_group(t_lsbox *lsbox, t_args_ch *args)
+void				calc_len_group(t_lsbox *lsbox, t_args *args)
 {
 	int				len;
 
@@ -39,7 +51,7 @@ void				calc_len_group(t_lsbox *lsbox, t_args_ch *args)
 		lsbox->len_group = len;
 }
 
-void				calc_len_ino(t_lsbox *lsbox, t_args_ch *args)
+void				calc_len_ino(t_lsbox *lsbox, t_args *args)
 {
 	int				len;
 	long long		num;

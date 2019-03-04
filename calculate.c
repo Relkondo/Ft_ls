@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   calculate.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: scoron <scoron@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/03/04 21:43:02 by scoron            #+#    #+#             */
+/*   Updated: 2019/03/04 22:39:11 by scoron           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_ls.h"
 
-void				calc_len_links(t_lsbox *lsbox, t_args_ch_ch *args)
+void				calc_len_links(t_lsbox *lsbox, t_args *args)
 {
 	int				len;
 	int				num;
@@ -16,7 +28,7 @@ void				calc_len_links(t_lsbox *lsbox, t_args_ch_ch *args)
 		lsbox->len_links = len;
 }
 
-void				calc_len_size(t_lsbox *lsbox, t_args_ch *args)
+void				calc_len_size(t_lsbox *lsbox, t_args *args)
 {
 	int				len;
 	int				num;
@@ -35,7 +47,7 @@ void				calc_len_size(t_lsbox *lsbox, t_args_ch *args)
 		lsbox->len_size = len;
 }
 
-void				calc_len_user(t_lsbox *lsbox, t_args_ch *args)
+void				calc_len_user(t_lsbox *lsbox, t_args *args)
 {
 	int				len;
 
@@ -49,7 +61,7 @@ void				calculate_number_of_columns(t_lsbox *lsbox)
 	int				column_width;
 
 	column_width = lsbox->len_file_name + 1;
-	if (lsbox->option.i)
+	if (lsbox->opt.i)
 		column_width += lsbox->len_ino + 1;
 	lsbox->number_of_columns = lsbox->width / column_width;
 }

@@ -1,9 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   loop_init.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: scoron <scoron@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/03/04 21:44:28 by scoron            #+#    #+#             */
+/*   Updated: 2019/03/04 22:47:59 by scoron           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 
 #include "ft_ls.h"
 
 void				loop_no_file(t_lsbox *lsbox)
 {
-	t_args_ch			*args;
+	t_args			*args;
 
 	args = lsbox->args;
 	while (args)
@@ -16,9 +28,9 @@ void				loop_no_file(t_lsbox *lsbox)
 
 void				loop_dirs(t_lsbox *lsbox)
 {
-	t_args_ch			*args;
+	t_args			*args;
 
-	if (lsbox->option.d)
+	if (lsbox->opt.d)
 		return ;
 	args = lsbox->args;
 	while (args)

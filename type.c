@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   type.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: scoron <scoron@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/03/04 21:45:10 by scoron            #+#    #+#             */
+/*   Updated: 2019/03/04 23:21:26 by scoron           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_ls.h"
 #include <sys/acl.h>
 #include <sys/stat.h>
@@ -22,7 +34,7 @@ static char			*get_str(int value)
 	return (PER_0);
 }
 
-static char			get_type(t_args_ch *args)
+static char			get_type(t_args *args)
 {
 	if (args->attr.blk)
 		return (PER_BLK);
@@ -41,7 +53,7 @@ static char			get_type(t_args_ch *args)
 	return (' ');
 }
 
-static char			get_acl(t_args_ch *args)
+static char			get_acl(t_args *args)
 {
 	acl_t			acl;
 
@@ -53,7 +65,7 @@ static char			get_acl(t_args_ch *args)
 	return ('+');
 }
 
-static void			swap_exec_char(t_args_ch *args, int i, char *exec_char)
+static void			swap_exec_char(t_args *args, int i, char *exec_char)
 {
 	if (i == 2 && args->attr.mode & S_ISUID)
 		*exec_char = ((args->attr.mode & S_IXUSR) ? 's' : 'S');
@@ -63,7 +75,7 @@ static void			swap_exec_char(t_args_ch *args, int i, char *exec_char)
 		*exec_char = ((args->attr.mode & S_IXOTH) ? 't' : 'T');
 }
 
-void				type(t_lsbox *lsbox, t_args_ch *args)
+void				type(t_lsbox *lsbox, t_args *args)
 {
 	int				i;
 	int				type;
@@ -72,6 +84,7 @@ void				type(t_lsbox *lsbox, t_args_ch *args)
 
 	i = 3;
 	type = args->attr.type;
+	(void)lsbox;
 	if ((str = (char *)malloc(sizeof(char) * 12)))
 	{
 		tmp = str;
@@ -88,5 +101,5 @@ void				type(t_lsbox *lsbox, t_args_ch *args)
 		free(str);
 	}
 	else
-		ft_printf("%s ", lsbox->malloc_failed);
+		ft_printf("%s ", "malloc type failed\n");
 }

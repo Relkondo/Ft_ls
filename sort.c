@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   sort.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: scoron <scoron@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/03/04 21:44:41 by scoron            #+#    #+#             */
+/*   Updated: 2019/03/04 23:18:03 by scoron           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_ls.h"
 
 static int			swap(t_lsbox *lsbox)
@@ -37,10 +49,10 @@ void				sort(t_lsbox *lsbox)
 {
 	bool			(*tmp)(struct s_lsbox *lsbox);
 
-	if (lsbox->option.func)
+	if (lsbox->opt.f)
 		return ;
 	tmp = lsbox->sort_func;
-	if (!lsbox->option.r)
+	if (!lsbox->opt.r)
 		lsbox->sort_func = &sort_alpha;
 	else
 		lsbox->sort_func = &sort_alpha_r;

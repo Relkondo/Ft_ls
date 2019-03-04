@@ -6,7 +6,7 @@
 /*   By: scoron <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/13 15:24:04 by scoron            #+#    #+#             */
-/*   Updated: 2019/02/09 22:30:59 by scoron           ###   ########.fr       */
+/*   Updated: 2019/03/04 22:38:10 by scoron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,8 @@
 
 # include "libft.h"
 # include <stdarg.h>
-# include <stdio.h>
+# include <stdint.h>
+# include <stdlib.h>
 
 # define BUF_SIZE 90
 # define F_SHARP		(1 << 0)
@@ -44,6 +45,7 @@ typedef struct		s_ftp
 	int				f;
 	size_t			preci;
 	int				min;
+	int				padding;
 	int				size;
 	int				retv;
 	intmax_t		val;
