@@ -11,11 +11,12 @@
 /* ************************************************************************** */
 
 #include "ft_ls.h"
-#include <stdio.h>
+#include <sys/ioctl.h>
 
 t_lsbox		init_lsbox(int argc, char **argv)
 {
 		t_lsbox		lsbox;
+		struct winsize	wsize;
 
 		time(&lsbox.now);
 		lsbox.six_months_ago = lsbox.now - SIX_MONTHS;
@@ -23,6 +24,9 @@ t_lsbox		init_lsbox(int argc, char **argv)
 		lsbox.argv = argv + 1;
 		lsbox.headers = 0;
 		lsbox.number_of_columns = 0;
+		if (ioctl(STDOUT_FILENO, TIOCGWINSZ, &wsize) == -1)
+		lsbox.opt.one = 1;
+		lsbox.width = wsize.ws_col;
 		return (lsbox);
 }
 

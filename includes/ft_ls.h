@@ -26,7 +26,7 @@
 
 
 # define COLOUR		false
-# define COLUMN		false
+# define COLUMN		true
 
 # define ALL_OPT		"-ABCFGHLOPRSTUWabcdefghiklmnopqrstuwx1@"
 # define SIX_MONTHS		15768000
