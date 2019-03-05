@@ -6,7 +6,7 @@
 /*   By: scoron <scoron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/03 12:40:38 by scoron            #+#    #+#             */
-/*   Updated: 2019/03/05 09:42:19 by scoron           ###   ########.fr       */
+/*   Updated: 2019/03/05 10:09:00 by scoron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@
 # define COLOUR		false
 # define COLUMN		false
 
-# define ALL_OPT		"-ABCFGHLOPRSTUWabcdefghiklmnopqrstuwx1"
+# define ALL_OPT		"-ABCFGHLOPRSTUWabcdefghiklmnopqrstuwx1@"
 # define SIX_MONTHS		15768000
 # define RL_BUFSIZE	1024
 # define NUM_FILES	"--------------\nFiles:\n%d"
@@ -144,6 +144,7 @@ typedef struct		s_opt
 	unsigned char	T		: 1;
 	unsigned char	U		: 1;
 	unsigned char	one		: 1;
+	unsigned char	at		: 1;
 }					t_opt;
 
 typedef struct			s_lsbox
