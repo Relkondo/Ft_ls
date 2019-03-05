@@ -6,7 +6,7 @@
 /*   By: scoron <scoron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/03 12:42:04 by scoron            #+#    #+#             */
-/*   Updated: 2019/03/04 22:42:22 by scoron           ###   ########.fr       */
+/*   Updated: 2019/03/05 01:10:18 by scoron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ static void				read_f(t_lsbox *lsbox, t_args *args, struct stat *func)
 
 void				attributes(t_lsbox *lsbox)
 {
-	t_args			*args;
+	t_args				*args;
 	struct stat			func;
 
 	args = lsbox->current_args;

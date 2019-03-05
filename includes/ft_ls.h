@@ -6,7 +6,7 @@
 /*   By: scoron <scoron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/03 12:40:38 by scoron            #+#    #+#             */
-/*   Updated: 2019/03/04 23:26:51 by scoron           ###   ########.fr       */
+/*   Updated: 2019/03/05 01:22:47 by scoron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,103 +81,104 @@
 
 typedef struct			s_attr
 {
-		char			*str;
-		char			*path;
-		int				len_of_str;
-		unsigned char	no_file	: 1;
-		unsigned char	fill	: 7;
-		long long		ino;
-		int				type;
-		mode_t			mode;
-		int				links;
-		char			*user;
-		char			*group;
-		int				rdev;
-		int				size;
-		time_t			c_time;
-		time_t			t_time;
-		time_t			u_time;
-		time_t			U_time;
-		char			sym_path[RL_BUFSIZE + 1];
-		unsigned char	ifo		: 1;
-		unsigned char	chr		: 1;
-		unsigned char	dir		: 1;
-		unsigned char	blk		: 1;
-		unsigned char	reg		: 1;
-		unsigned char	lnk		: 1;
-		unsigned char	sock	: 1;
-		unsigned char	wht		: 1;
+	char			*str;
+	char			*path;
+	int				len_of_str;
+	unsigned char	no_file	: 1;
+	unsigned char	fill	: 7;
+	long long		ino;
+	int				type;
+	mode_t			mode;
+	int				links;
+	char			*user;
+	char			*group;
+	int				rdev;
+	int				size;
+	time_t			c_time;
+	time_t			t_time;
+	time_t			u_time;
+	time_t			U_time;
+	char			sym_path[RL_BUFSIZE + 1];
+	unsigned char	ifo		: 1;
+	unsigned char	chr		: 1;
+	unsigned char	dir		: 1;
+	unsigned char	blk		: 1;
+	unsigned char	reg		: 1;
+	unsigned char	lnk		: 1;
+	unsigned char	sock	: 1;
+	unsigned char	wht		: 1;
 }						t_attr;
 
 typedef struct			s_args
 {	
-		t_attr			attr;
-		struct s_args	*next;
+	t_attr			attr;
+	struct s_args	*next;
 }						t_args;
 
-typedef struct			s_opt
+typedef struct		s_opt
 {
-		unsigned char	a;
-		unsigned char	c;
-		unsigned char	d;
-		unsigned char	f;
-		unsigned char	g;
-		unsigned char	i;
-		unsigned char	l;
-		unsigned char	o;
-		unsigned char	p;
-		unsigned char	r;
-		unsigned char	t;
-		unsigned char	u;
-		unsigned char	x;
-		unsigned char	A;
-		unsigned char	F;
-		unsigned char	G;
-		unsigned char	N;
-		unsigned char	R;
-		unsigned char	S;
-		unsigned char	T;
-		unsigned char	U;
-		unsigned char	one;
-}						t_opt;
+	unsigned char	a		: 1;
+	unsigned char	c		: 1;
+	unsigned char	d		: 1;
+	unsigned char	f		: 1;
+	unsigned char	g		: 1;
+	unsigned char	i		: 1;
+	unsigned char	l		: 1;
+	unsigned char	o		: 1;
+	unsigned char	p		: 1;
+	unsigned char	r		: 1;
+	unsigned char	t		: 1;
+	unsigned char	u		: 1;
+	unsigned char	x		: 1;
+	unsigned char	A		: 1;
+	unsigned char	F		: 1;
+	unsigned char	G		: 1;
+	unsigned char	N		: 1;
+	unsigned char	R		: 1;
+	unsigned char	S		: 1;
+	unsigned char	T		: 1;
+	unsigned char	U		: 1;
+	unsigned char	one		: 1;
+	unsigned char	fill	: 2;
+}					t_opt;
 
 typedef struct			s_lsbox
 {
-		char			**argv;
-		char			**argv_opt;
-		int				argc;
-		time_t			now;
-		time_t			six_months_ago;
-		int				nb_opt;
-		t_opt			opt;
-		unsigned char	headers	: 1;
-		unsigned char	fill	: 7;
-		int				len_ino;
-		int				len_links;
-		int				len_user;
-		int				len_group;
-		int				len_size;
-		int				len_file_name;
-		int				items_to_display;
-		int				total_blocks;
-		int				width;
-		int				number_of_columns;
-		t_args			*args;
-		t_args			*current_args;
-		t_args			*head;
-		t_args			*track;
-		bool			(*sort_func)(struct s_lsbox *lsbox);
+	char			**argv;
+	char			**argv_opt;
+	int				argc;
+	time_t			now;
+	time_t			six_months_ago;
+	int				nb_opt;
+	t_opt			opt;
+	unsigned char	headers	: 1;
+	unsigned char	fill	: 7;
+	int				len_ino;
+	int				len_links;
+	int				len_user;
+	int				len_group;
+	int				len_size;
+	int				len_file_name;
+	int				items_to_display;
+	int				total_blocks;
+	int				width;
+	int				number_of_columns;
+	t_args			*args;
+	t_args			*current_args;
+	t_args			*head;
+	t_args			*track;
+	bool			(*sort_func)(struct s_lsbox *lsbox);
 }						t_lsbox;
 
 typedef struct		s_read_dir
 {
-		t_lsbox			*lsbox;
-		t_args			*args;
-		t_args			*tmp;
-		t_args			*head;
-		t_args			*last_args;
-		DIR				*directory;
-		struct dirent	*file;
+	t_lsbox			*lsbox;
+	t_args			*args;
+	t_args			*tmp;
+	t_args			*head;
+	t_args			*last_args;
+	DIR				*directory;
+	struct dirent	*file;
 }					t_read_dir;
 
 void				attributes(t_lsbox *lsbox);
@@ -231,5 +232,6 @@ t_args				*create_args(void);
 bool				is_executeable(t_args *args);
 void				path(t_lsbox *lsbox, t_args *args, char *path, char *name);
 void				type(t_lsbox *lsbox, t_args *args);
+void				parse_args(t_lsbox *lsbox, char **argv);
 
 #endif
