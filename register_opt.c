@@ -6,7 +6,7 @@
 /*   By: scoron <scoron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/03 12:40:04 by scoron            #+#    #+#             */
-/*   Updated: 2019/03/05 01:17:18 by scoron           ###   ########.fr       */
+/*   Updated: 2019/03/05 08:16:08 by scoron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 void	opt_error(t_lsbox *lsbox, char c)
 {
-		ft_putstr_fd("ft_ls: illegal opt -- ", 2);
+		ft_putstr_fd("ft_ls: illegal option -- ", 2);
 		write(2, &c, 1);
 		ft_putstr_fd("\nusage: ./ft_ls [", 2);
 		ft_putstr_fd(ALL_OPT, 2);

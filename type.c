@@ -6,7 +6,7 @@
 /*   By: scoron <scoron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/04 21:45:10 by scoron            #+#    #+#             */
-/*   Updated: 2019/03/05 04:25:11 by scoron           ###   ########.fr       */
+/*   Updated: 2019/03/05 07:26:29 by scoron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,5 +101,5 @@ void				type(t_lsbox *lsbox, t_args *args)
 		free(str);
 	}
 	else
-		ft_printf("%s ", "malloc type failed\n");
+		ls_error(lsbox, "malloc type failed\n");
 }

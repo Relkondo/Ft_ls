@@ -6,7 +6,7 @@
 /*   By: scoron <scoron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/03 12:40:38 by scoron            #+#    #+#             */
-/*   Updated: 2019/03/05 06:41:14 by scoron           ###   ########.fr       */
+/*   Updated: 2019/03/05 09:19:20 by scoron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,17 @@
 # include <dirent.h>
 # include <stdbool.h>
 # include <time.h>
+#include <grp.h>
+#include <uuid/uuid.h>
+#include <sys/stat.h>
+#include <sys/types.h>
+#include <pwd.h>
 
 
 # define COLOUR		false
 # define COLUMN		false
 
-# define ALL_OPT		"ABCFGHLOPRSTUWabcdefghiklmnopqrstuwx1"
+# define ALL_OPT		"-ABCFGHLOPRSTUWabcdefghiklmnopqrstuwx1"
 # define SIX_MONTHS		15768000
 # define RL_BUFSIZE	1024
 # define NUM_FILES	"--------------\nFiles:\n%d"
@@ -139,7 +144,6 @@ typedef struct		s_opt
 	unsigned char	T		: 1;
 	unsigned char	U		: 1;
 	unsigned char	one		: 1;
-	unsigned char	fill	: 2;
 }					t_opt;
 
 typedef struct			s_lsbox
@@ -152,7 +156,6 @@ typedef struct			s_lsbox
 	int				nb_opt;
 	t_opt			opt;
 	unsigned char	headers	: 1;
-	unsigned char	fill	: 7;
 	int				len_ino;
 	int				len_links;
 	int				len_user;
@@ -234,5 +237,5 @@ void				path(t_lsbox *lsbox, t_args *args, char *path, char *name);
 void				type(t_lsbox *lsbox, t_args *args);
 void				parse_args(t_lsbox *lsbox, char **argv);
 void				path_r(t_lsbox *lsbox, t_args *args, char *path, char *name);
-
+void				read_f(t_lsbox *lsbox, t_args *args, struct stat *func);
 #endif

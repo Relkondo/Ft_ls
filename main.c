@@ -6,7 +6,7 @@
 /*   By: scoron <scoron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/03 12:39:50 by scoron            #+#    #+#             */
-/*   Updated: 2019/03/05 05:04:10 by scoron           ###   ########.fr       */
+/*   Updated: 2019/03/05 08:25:32 by scoron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,11 @@ t_lsbox		init_lsbox(int argc, char **argv)
 		lsbox.six_months_ago = lsbox.now - SIX_MONTHS;
 		lsbox.argc = argc - 1;
 		lsbox.argv = argv + 1;
+		lsbox.headers = 0;
+		lsbox.number_of_columns = 0;
 		return (lsbox);
 }
 
-/* le parsing consiste a compter les opt, les enregistrer, et enregister les arg dans une liste chainee */
 void		parsing(t_lsbox *lsbox)
 {
 		lsbox->nb_opt = count_opt(lsbox);
