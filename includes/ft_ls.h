@@ -18,15 +18,15 @@
 # include <dirent.h>
 # include <stdbool.h>
 # include <time.h>
-#include <grp.h>
-#include <uuid/uuid.h>
-#include <sys/stat.h>
-#include <sys/types.h>
-#include <pwd.h>
+# include <grp.h>
+# include <uuid/uuid.h>
+# include <sys/stat.h>
+# include <sys/types.h>
+# include <pwd.h>
 
 
 # define COLOUR		false
-# define COLUMN		true
+# define COLUMN		false
 
 # define ALL_OPT		"-ABCFGHLOPRSTUWabcdefghiklmnopqrstuwx1@"
 # define SIX_MONTHS		15768000

@@ -25,7 +25,7 @@ t_lsbox		init_lsbox(int argc, char **argv)
 		lsbox.headers = 0;
 		lsbox.number_of_columns = 0;
 		if (ioctl(STDOUT_FILENO, TIOCGWINSZ, &wsize) == -1)
-		lsbox.opt.one = 1;
+			lsbox.opt.one = 1;
 		lsbox.width = wsize.ws_col;
 		return (lsbox);
 }
