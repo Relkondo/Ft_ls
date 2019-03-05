@@ -6,7 +6,7 @@
 /*   By: scoron <scoron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/03 12:40:38 by scoron            #+#    #+#             */
-/*   Updated: 2019/03/05 01:22:47 by scoron           ###   ########.fr       */
+/*   Updated: 2019/03/05 06:41:14 by scoron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -198,7 +198,7 @@ void				size(t_lsbox *lsbox, t_args *args);
 void				display(t_lsbox *lsbox, t_args *args);
 void				print_path(t_lsbox *lsbox, t_args *args, bool do_print);
 void				print_spaces(int diff);
-int				get_diff(t_lsbox *lsbox, char *str, long long num, int flag);
+int					get_diff(t_lsbox *lsbox, char *str, long long num, int flag);
 void				show_time(t_lsbox *lsbox, t_args *args);
 void				file_name(t_lsbox *lsbox, t_args *args);
 void				free_args(t_lsbox *lsbox, t_args **head);
@@ -211,9 +211,9 @@ void				loop_init(t_lsbox *lsbox);
 void				loop_valid_dir(t_lsbox *lsbox, t_args *head);
 t_lsbox				init_lsbox(int argc, char **argv);
 void				parsing(t_lsbox *lsbox);
-int				main(int argc, char **argv);
+int					main(int argc, char **argv);
 void				opt_error(t_lsbox *lsbox, char c);
-int				count_opt(t_lsbox *lsbox);
+int					count_opt(t_lsbox *lsbox);
 void				fetch(t_lsbox *lsbox, char c);
 void				init_fetch(t_lsbox *lsbox);
 void				register_opts(t_lsbox *lsbox);
@@ -233,5 +233,6 @@ bool				is_executeable(t_args *args);
 void				path(t_lsbox *lsbox, t_args *args, char *path, char *name);
 void				type(t_lsbox *lsbox, t_args *args);
 void				parse_args(t_lsbox *lsbox, char **argv);
+void				path_r(t_lsbox *lsbox, t_args *args, char *path, char *name);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: scoron <scoron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/03 12:40:13 by scoron            #+#    #+#             */
-/*   Updated: 2019/03/05 01:22:48 by scoron           ###   ########.fr       */
+/*   Updated: 2019/03/05 06:03:38 by scoron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,28 +57,4 @@ t_args				*create_args(void)
 		return (NULL);
 	ft_bzero(args, sizeof(*args));
 	return (args);
-}
-
-void				path(t_lsbox *lsbox, t_args *args, char *path, char *name)
-{
-	char			*new_path;
-	char			*tmp;
-
-	if (!(args->attr.str = ft_strdup(name)))
-		ls_error(lsbox, "malloc attr.str failed");
-	if (!(new_path = ft_strnew(ft_strlen(path) + ft_strlen(name) + 1)))
-		ls_error(lsbox, "malloc new_path failed");
-	else
-	{
-		tmp = new_path;
-		if (ft_strcmp(path, "."))
-		{
-			while (path && *path)
-				*(tmp++) = *(path++);
-			*(tmp++) = '/';
-		}
-		while (name && *name)
-			*(tmp++) = *(name++);
-		args->attr.path = new_path;
-	}
 }

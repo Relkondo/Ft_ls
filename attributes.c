@@ -6,7 +6,7 @@
 /*   By: scoron <scoron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/03 12:42:04 by scoron            #+#    #+#             */
-/*   Updated: 2019/03/05 01:10:18 by scoron           ###   ########.fr       */
+/*   Updated: 2019/03/05 05:11:58 by scoron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,17 +59,17 @@ static void			get_user_group(t_lsbox *lsbox, t_args *args, struct stat *func)
 	struct group	*group;
 
 	if ((passwd = getpwuid(func->st_uid)))
-		(args->attr.user = ft_strdup(passwd->pw_name));
+		args->attr.user = ft_strdup(passwd->pw_name);
 	else
 		args->attr.user = ft_itoa(func->st_uid);
 	if (!args->attr.user)
-		ls_error(lsbox, "malloc attr.user failed");
+		ls_error(lsbox, "get attr.user failed");
 	if ((group = getgrgid(func->st_gid)))
 		args->attr.group = ft_strdup(group->gr_name);
 	else
 		args->attr.group = ft_itoa(func->st_gid);
 	if (!args->attr.group)
-		ls_error(lsbox, "malloc attr.group failed");
+		ls_error(lsbox, "get attr.group failed");
 }
 
 static void				read_f(t_lsbox *lsbox, t_args *args, struct stat *func)

@@ -6,7 +6,7 @@
 #    By: scoron <scoron@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/03/03 12:40:23 by scoron            #+#    #+#              #
-#    Updated: 2019/03/05 01:24:06 by scoron           ###   ########.fr        #
+#    Updated: 2019/03/05 06:00:21 by scoron           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,6 +33,7 @@ SRCS = attributes.c \
 	   type.c \
 	   loop_valid_dir.c \
 	   register_opt.c \
+	   path.c \
 
 OBJS = $(SRCS:.c=.o)
 

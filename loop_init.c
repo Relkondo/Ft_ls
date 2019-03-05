@@ -6,14 +6,14 @@
 /*   By: scoron <scoron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/04 21:44:28 by scoron            #+#    #+#             */
-/*   Updated: 2019/03/05 00:58:44 by scoron           ###   ########.fr       */
+/*   Updated: 2019/03/05 06:36:40 by scoron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 
 #include "ft_ls.h"
 
-void				loop_no_file(t_lsbox *lsbox)
+void	loop_no_file(t_lsbox *lsbox)
 {
 	t_args			*args;
 
@@ -26,7 +26,7 @@ void				loop_no_file(t_lsbox *lsbox)
 	}
 }
 
-void				loop_dirs(t_lsbox *lsbox)
+void	loop_dirs(t_lsbox *lsbox)
 {
 	t_args			*args;
 
@@ -41,7 +41,7 @@ void				loop_dirs(t_lsbox *lsbox)
 	}
 }
 
-void			loop_init(t_lsbox *lsbox)
+void	loop_init(t_lsbox *lsbox)
 {
 	loop_no_file(lsbox);
 	loop_files(lsbox);
