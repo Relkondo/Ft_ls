@@ -6,7 +6,7 @@
 /*   By: scoron <scoron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/04 21:44:52 by scoron            #+#    #+#             */
-/*   Updated: 2019/03/06 13:04:23 by scoron           ###   ########.fr       */
+/*   Updated: 2019/03/06 13:50:51 by scoron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void				assign_sort(t_lsbox *lsbox)
 {
-	if (lsbox->opt.S)
+	if (lsbox->opt.cap_s)
 		lsbox->sort_func = &sort_size;
 	else if (lsbox->opt.t && !lsbox->opt.r)
 		lsbox->sort_func = &sort_time;
@@ -27,15 +27,15 @@ void				assign_sort(t_lsbox *lsbox)
 void				opt_effect(t_lsbox *lsbox)
 {
 	if (COLOUR)
-		lsbox->opt.G = 1;
+		lsbox->opt.cap_g = 1;
 	if (COLUMN)
 		lsbox->opt.x = 1;
-	if (lsbox->opt.S)
+	if (lsbox->opt.cap_s)
 		lsbox->opt.t = 0;
 	if (lsbox->opt.l)
 		lsbox->opt.x = 0;
 	if (lsbox->opt.d)
-		lsbox->opt.R = 0;
+		lsbox->opt.cap_r = 0;
 	if (lsbox->opt.f)
 		lsbox->opt.a = 1;
 	if (lsbox->opt.one)

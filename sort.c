@@ -5,16 +5,16 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: scoron <scoron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/03/04 21:44:41 by scoron            #+#    #+#             */
-/*   Updated: 2019/03/06 13:04:07 by scoron           ###   ########.fr       */
+/*   Created: 2019/03/06 14:19:53 by scoron            #+#    #+#             */
+/*   Updated: 2019/03/06 14:29:58 by scoron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-static int			swap(t_lsbox *lsbox)
+static int		swap(t_lsbox *lsbox)
 {
-	t_attr			tmp;
+	t_attr		tmp;
 
 	if (lsbox->sort_func(lsbox))
 	{
@@ -26,9 +26,9 @@ static int			swap(t_lsbox *lsbox)
 	return (0);
 }
 
-static void			do_sort(t_lsbox *lsbox)
+static void		do_sort(t_lsbox *lsbox)
 {
-	int				sorted;
+	int			sorted;
 
 	while (1)
 	{
@@ -45,9 +45,9 @@ static void			do_sort(t_lsbox *lsbox)
 	}
 }
 
-void				sort(t_lsbox *lsbox)
+void			sort(t_lsbox *lsbox)
 {
-	bool			(*tmp)(struct s_lsbox *lsbox);
+	int			(*tmp)(struct s_lsbox *lsbox);
 
 	if (lsbox->opt.f)
 		return ;

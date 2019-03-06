@@ -6,7 +6,7 @@
 /*   By: scoron <scoron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/03 12:42:04 by scoron            #+#    #+#             */
-/*   Updated: 2019/03/06 13:03:44 by scoron           ###   ########.fr       */
+/*   Updated: 2019/03/06 13:56:49 by scoron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static void	get_sym_path(t_lsbox *lsbox, t_args *args, struct stat *func)
 	attr = &args->attr;
 	if ((len = readlink(attr->path, attr->sym_path, RL_BUFSIZE)) != -1)
 		attr->sym_path[len] = '\0';
-	if (!(lsbox->opt.R) && !lstat(args->attr.sym_path, func))
+	if (!(lsbox->opt.cap_r) && !lstat(args->attr.sym_path, func))
 		if ((TYPE_DIR & func->st_mode) == TYPE_DIR)
 			args->attr.dir = 1;
 }
@@ -88,7 +88,7 @@ void		read_f(t_lsbox *lsbox, t_args *args, struct stat *func)
 	args->attr.c_time = func->st_ctimespec.tv_sec;
 	args->attr.t_time = func->st_mtimespec.tv_sec;
 	args->attr.u_time = func->st_atimespec.tv_sec;
-	args->attr.U_time = func->st_birthtimespec.tv_sec;
+	args->attr.cap_u_time = func->st_birthtimespec.tv_sec;
 	get_type(lsbox, args, func);
 }
 

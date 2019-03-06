@@ -6,13 +6,13 @@
 /*   By: scoron <scoron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/05 01:17:39 by scoron            #+#    #+#             */
-/*   Updated: 2019/03/05 04:59:37 by scoron           ###   ########.fr       */
+/*   Updated: 2019/03/06 13:54:29 by scoron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-t_args				*add_args_element(void)
+t_args	*add_args_element(void)
 {
 	t_args			*args;
 
@@ -22,7 +22,7 @@ t_args				*add_args_element(void)
 	return (args);
 }
 
-void			register_args(t_lsbox *lsbox, char **argv)
+void	register_args(t_lsbox *lsbox, char **argv)
 {
 	t_args			*args;
 	t_args			*last_args;

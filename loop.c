@@ -6,7 +6,7 @@
 /*   By: scoron <scoron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/04 21:44:11 by scoron            #+#    #+#             */
-/*   Updated: 2019/03/05 07:40:56 by scoron           ###   ########.fr       */
+/*   Updated: 2019/03/06 13:50:30 by scoron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 static bool			register_dir(t_read_dir *read_dir)
 {
-	if ((read_dir->lsbox->opt.A && (ft_strcmp(read_dir->file->d_name, ".")
+	if ((read_dir->lsbox->opt.cap_a && (ft_strcmp(read_dir->file->d_name, ".")
 					&& ft_strcmp(read_dir->file->d_name, "..")))
 			|| read_dir->lsbox->opt.a || (read_dir->file->d_name[0] != '.'))
 	{
@@ -63,7 +63,7 @@ static void			check_headers(t_lsbox *lsbox, t_args *head)
 	args = head;
 	while (args && !lsbox->headers)
 	{
-		if (lsbox->opt.R && args->attr.dir && !lsbox->opt.d)
+		if (lsbox->opt.cap_r && args->attr.dir && !lsbox->opt.d)
 			lsbox->headers = 1;
 		args = args->next;
 	}
@@ -83,7 +83,7 @@ void				ls_loop(t_lsbox *lsbox, t_args *args)
 	sort(lsbox);
 	head = lsbox->current_args;
 	loop_in_dir(lsbox, head);
-	if (lsbox->opt.R)
+	if (lsbox->opt.cap_r)
 	{
 		tmp = head;
 		while (tmp)

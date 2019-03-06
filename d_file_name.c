@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   file_name.c                                        :+:      :+:    :+:   */
+/*   d_file_name.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: scoron <scoron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/04 21:43:34 by scoron            #+#    #+#             */
-/*   Updated: 2019/03/05 09:11:34 by scoron           ###   ########.fr       */
+/*   Updated: 2019/03/06 14:06:19 by scoron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static void			print_end_char(t_lsbox *lsbox, t_args *args)
 {
-	if (lsbox->opt.F)
+	if (lsbox->opt.cap_f)
 	{
 		if (args->attr.ifo)
 			ft_putchar('|');
@@ -62,7 +62,7 @@ void				d_file_name(t_lsbox *lsbox, t_args *args)
 
 	attr = &args->attr;
 	len = attr->len_of_str;
-	if (lsbox->opt.G)
+	if (lsbox->opt.cap_g)
 		print_colour(args);
 	else
 		ft_printf("%s", attr->str);
@@ -70,5 +70,5 @@ void				d_file_name(t_lsbox *lsbox, t_args *args)
 	if (lsbox->opt.l && attr->lnk)
 		ft_printf(" -> %s", attr->sym_path);
 	if (lsbox->nb_columns && !lsbox->opt.l)
-		print_spaces(get_diff(lsbox, attr->str, len, LEN_NAME) + 1);
+		d_space(get_diff(lsbox, attr->str, len, LEN_NAME) + 1);
 }

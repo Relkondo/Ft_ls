@@ -6,7 +6,7 @@
 /*   By: scoron <scoron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/03 12:40:38 by scoron            #+#    #+#             */
-/*   Updated: 2019/03/06 13:14:32 by scoron           ###   ########.fr       */
+/*   Updated: 2019/03/06 14:31:04 by scoron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@
 # define COL_EXE	"\x1b[31m"
 # define COL_CLR	"\x1b[0m"
 
-typedef struct			s_attr
+typedef struct		s_attr
 {
 	char			*str;
 	char			*path;
@@ -95,7 +95,7 @@ typedef struct			s_attr
 	time_t			c_time;
 	time_t			t_time;
 	time_t			u_time;
-	time_t			U_time;
+	time_t			cap_u_time;
 	char			sym_path[RL_BUFSIZE + 1];
 	unsigned char	ifo		: 1;
 	unsigned char	chr		: 1;
@@ -105,13 +105,13 @@ typedef struct			s_attr
 	unsigned char	lnk		: 1;
 	unsigned char	sock	: 1;
 	unsigned char	wht		: 1;
-}						t_attr;
+}					t_attr;
 
-typedef struct			s_args
-{	
+typedef struct		s_args
+{
 	t_attr			attr;
 	struct s_args	*next;
-}						t_args;
+}					t_args;
 
 typedef struct		s_opt
 {
@@ -128,19 +128,19 @@ typedef struct		s_opt
 	unsigned char	t		: 1;
 	unsigned char	u		: 1;
 	unsigned char	x		: 1;
-	unsigned char	A		: 1;
-	unsigned char	F		: 1;
-	unsigned char	G		: 1;
-	unsigned char	N		: 1;
-	unsigned char	R		: 1;
-	unsigned char	S		: 1;
-	unsigned char	T		: 1;
-	unsigned char	U		: 1;
+	unsigned char	cap_a	: 1;
+	unsigned char	cap_f	: 1;
+	unsigned char	cap_g	: 1;
+	unsigned char	cap_n	: 1;
+	unsigned char	cap_r	: 1;
+	unsigned char	cap_s	: 1;
+	unsigned char	cap_t	: 1;
+	unsigned char	cap_u	: 1;
 	unsigned char	one		: 1;
 	unsigned char	at		: 1;
 }					t_opt;
 
-typedef struct			s_lsbox
+typedef struct		s_lsbox
 {
 	char			**argv;
 	char			**argv_opt;
@@ -164,8 +164,8 @@ typedef struct			s_lsbox
 	t_args			*current_args;
 	t_args			*head;
 	t_args			*track;
-	bool			(*sort_func)(struct s_lsbox *lsbox);
-}						t_lsbox;
+	int				(*sort_func)(struct s_lsbox *lsbox);
+}					t_lsbox;
 
 typedef struct		s_read_dir
 {
@@ -192,8 +192,9 @@ void				user_and_group(t_lsbox *lsbox, t_args *args);
 void				size(t_lsbox *lsbox, t_args *args);
 void				display(t_lsbox *lsbox, t_args *args);
 void				print_path(t_lsbox *lsbox, t_args *args, bool do_print);
-void				print_spaces(int diff);
-int					get_diff(t_lsbox *lsbox, char *str, long long num, int flag);
+void				d_space(int diff);
+int					get_diff(t_lsbox *lsbox, char *str,
+					long long num, int flag);
 void				d_time(t_lsbox *lsbox, t_args *args);
 void				d_file_name(t_lsbox *lsbox, t_args *args);
 void				free_args(t_lsbox *lsbox, t_args **head);
@@ -223,12 +224,13 @@ void				init_fetch(t_lsbox *lsbox);
 void				register_opts(t_lsbox *lsbox);
 void				path_copy(char *new_path, char *path, char *name);
 void				path(t_lsbox *lsbox, t_args *args, char *path, char *name);
-void				path_r(t_lsbox *lsbox, t_args *args, char *path, char *name);
+void				path_r(t_lsbox *lsbox, t_args *args,
+					char *path, char *name);
 void				sort(t_lsbox *lsbox);
-bool				sort_alpha(t_lsbox *lsbox);
-bool				sort_size(t_lsbox *lsbox);
-bool				sort_time(t_lsbox *lsbox);
-bool				sort_time_r(t_lsbox *lsbox);
+int					sort_alpha(t_lsbox *lsbox);
+int					sort_size(t_lsbox *lsbox);
+int					sort_time(t_lsbox *lsbox);
+int					sort_time_r(t_lsbox *lsbox);
 void				d_type(t_lsbox *lsbox, t_args *args);
 
 #endif

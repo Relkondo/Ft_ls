@@ -6,7 +6,7 @@
 /*   By: scoron <scoron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/03 12:40:04 by scoron            #+#    #+#             */
-/*   Updated: 2019/03/06 13:02:07 by scoron           ###   ########.fr       */
+/*   Updated: 2019/03/06 13:43:51 by scoron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,14 +53,14 @@ void	fetch(t_lsbox *lsbox, char c)
 	lsbox->opt.t += (c == 't') ? 1 : 0;
 	lsbox->opt.u += (c == 'u') ? 1 : 0;
 	lsbox->opt.x += (c == 'x') ? 1 : 0;
-	lsbox->opt.A += (c == 'A') ? 1 : 0;
-	lsbox->opt.F += (c == 'F') ? 1 : 0;
-	lsbox->opt.G += (c == 'G') ? 1 : 0;
-	lsbox->opt.N += (c == 'N') ? 1 : 0;
-	lsbox->opt.R += (c == 'R') ? 1 : 0;
-	lsbox->opt.S += (c == 'S') ? 1 : 0;
-	lsbox->opt.T += (c == 'T') ? 1 : 0;
-	lsbox->opt.U += (c == 'U') ? 1 : 0;
+	lsbox->opt.cap_a += (c == 'A') ? 1 : 0;
+	lsbox->opt.cap_f += (c == 'F') ? 1 : 0;
+	lsbox->opt.cap_g += (c == 'G') ? 1 : 0;
+	lsbox->opt.cap_n += (c == 'N') ? 1 : 0;
+	lsbox->opt.cap_r += (c == 'R') ? 1 : 0;
+	lsbox->opt.cap_s += (c == 'S') ? 1 : 0;
+	lsbox->opt.cap_t += (c == 'T') ? 1 : 0;
+	lsbox->opt.cap_u += (c == 'U') ? 1 : 0;
 	lsbox->opt.one += (c == '1') ? 1 : 0;
 }
 
@@ -79,14 +79,14 @@ void	init_fetch(t_lsbox *lsbox)
 	lsbox->opt.t = 0;
 	lsbox->opt.u = 0;
 	lsbox->opt.x = 0;
-	lsbox->opt.A = 0;
-	lsbox->opt.F = 0;
-	lsbox->opt.G = 0;
-	lsbox->opt.N = 0;
-	lsbox->opt.R = 0;
-	lsbox->opt.S = 0;
-	lsbox->opt.T = 0;
-	lsbox->opt.U = 0;
+	lsbox->opt.cap_a = 0;
+	lsbox->opt.cap_f = 0;
+	lsbox->opt.cap_g = 0;
+	lsbox->opt.cap_n = 0;
+	lsbox->opt.cap_r = 0;
+	lsbox->opt.cap_s = 0;
+	lsbox->opt.cap_t = 0;
+	lsbox->opt.cap_u = 0;
 	lsbox->opt.one = 0;
 }
 

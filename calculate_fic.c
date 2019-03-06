@@ -1,15 +1,14 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   calculate2.c                                       :+:      :+:    :+:   */
+/*   calculate_fic.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: scoron <scoron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/04 21:43:08 by scoron            #+#    #+#             */
-/*   Updated: 2019/03/05 09:19:05 by scoron           ###   ########.fr       */
+/*   Updated: 2019/03/06 14:05:37 by scoron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "ft_ls.h"
 
@@ -31,12 +30,12 @@ void				calc_len_file_name(t_lsbox *lsbox, t_args *args)
 	attr = &args->attr;
 	len = ft_strlen(attr->str);
 	attr->len_of_str = len;
-	if (lsbox->opt.F && (attr->dir || attr->lnk || attr->sock || attr->wht
+	if (lsbox->opt.cap_f && (attr->dir || attr->lnk || attr->sock || attr->wht
 				|| attr->ifo || is_executeable(args)))
 		attr->len_of_str++;
 	else if (lsbox->opt.p && attr->dir)
 		attr->len_of_str++;
-	if (lsbox->opt.F || lsbox->opt.p)
+	if (lsbox->opt.cap_f || lsbox->opt.p)
 		len++;
 	if (len > lsbox->len_file_name)
 		lsbox->len_file_name = len;

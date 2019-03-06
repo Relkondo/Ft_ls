@@ -6,13 +6,13 @@
 /*   By: scoron <scoron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/04 21:44:58 by scoron            #+#    #+#             */
-/*   Updated: 2019/03/06 13:03:57 by scoron           ###   ########.fr       */
+/*   Updated: 2019/03/06 14:27:50 by scoron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-bool				sort_alpha(t_lsbox *lsbox)
+int		sort_alpha(t_lsbox *lsbox)
 {
 	if (!lsbox->opt.r)
 	{
@@ -28,7 +28,7 @@ bool				sort_alpha(t_lsbox *lsbox)
 	}
 }
 
-bool				sort_size(t_lsbox *lsbox)
+int		sort_size(t_lsbox *lsbox)
 {
 	if (!lsbox->opt.r)
 	{
@@ -44,7 +44,7 @@ bool				sort_size(t_lsbox *lsbox)
 	}
 }
 
-bool				sort_time(t_lsbox *lsbox)
+int		sort_time(t_lsbox *lsbox)
 {
 	if (lsbox->opt.c)
 	{
@@ -58,9 +58,9 @@ bool				sort_time(t_lsbox *lsbox)
 			return (true);
 		return (false);
 	}
-	if (lsbox->opt.U)
+	if (lsbox->opt.cap_u)
 	{
-		if (lsbox->track->attr.U_time < lsbox->track->next->attr.U_time)
+		if (lsbox->track->attr.cap_u_time < lsbox->track->next->attr.cap_u_time)
 			return (true);
 		return (false);
 	}
@@ -72,7 +72,7 @@ bool				sort_time(t_lsbox *lsbox)
 	}
 }
 
-bool				sort_time_r(t_lsbox *lsbox)
+int		sort_time_r(t_lsbox *lsbox)
 {
 	if (lsbox->opt.c)
 	{
@@ -86,9 +86,9 @@ bool				sort_time_r(t_lsbox *lsbox)
 			return (true);
 		return (false);
 	}
-	if (lsbox->opt.U)
+	if (lsbox->opt.cap_u)
 	{
-		if (lsbox->track->attr.U_time > lsbox->track->next->attr.U_time)
+		if (lsbox->track->attr.cap_u_time > lsbox->track->next->attr.cap_u_time)
 			return (true);
 		return (false);
 	}

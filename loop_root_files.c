@@ -6,7 +6,7 @@
 /*   By: scoron <scoron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/04 21:44:18 by scoron            #+#    #+#             */
-/*   Updated: 2019/03/05 07:41:10 by scoron           ###   ########.fr       */
+/*   Updated: 2019/03/06 13:49:38 by scoron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,6 @@ void				loop_root_files(t_lsbox *lsbox)
 	}
 	if (row_pos && lsbox->opt.x)
 		ft_putchar('\n');
-	if (lsbox->opt.N && lsbox->items_to_display)
+	if (lsbox->opt.cap_n && lsbox->items_to_display)
 		ft_printf(NUM_FILES, lsbox->items_to_display);
 }

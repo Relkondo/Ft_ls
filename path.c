@@ -6,7 +6,7 @@
 /*   By: scoron <scoron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/05 05:42:21 by scoron            #+#    #+#             */
-/*   Updated: 2019/03/06 13:06:32 by scoron           ###   ########.fr       */
+/*   Updated: 2019/03/06 13:51:36 by scoron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void		path_r(t_lsbox *lsbox, t_args *args, char *path, char *name)
 
 	if (!(args->attr.str = ft_strdup(name)))
 		ls_error(lsbox, "malloc attr.str failed");
-	if (lsbox->opt.R && (path[0] != '.' || path[1] != '/'))
+	if (lsbox->opt.cap_r && (path[0] != '.' || path[1] != '/'))
 	{
 		if (!(new_path = ft_strnew(ft_strlen(path) + ft_strlen(name) + 3)))
 			ls_error(lsbox, "malloc new_path failed");

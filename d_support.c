@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   display2.c                                         :+:      :+:    :+:   */
+/*   d_support.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: scoron <scoron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/04 21:43:26 by scoron            #+#    #+#             */
-/*   Updated: 2019/03/05 06:41:06 by scoron           ###   ########.fr       */
+/*   Updated: 2019/03/06 14:06:00 by scoron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void			print_path(t_lsbox *lsbox, t_args *args, bool do_print)
 	print_path_count++;
 }
 
-void				print_spaces(int diff)
+void			d_space(int diff)
 {
 	char			*spaces;
 
@@ -41,7 +41,7 @@ void				print_spaces(int diff)
 	}
 }
 
-int					get_diff(t_lsbox *lsbox, char *str, long long num, int flag)
+int				get_diff(t_lsbox *lsbox, char *str, long long num, int flag)
 {
 	int				len;
 
@@ -67,19 +67,19 @@ int					get_diff(t_lsbox *lsbox, char *str, long long num, int flag)
 	return (0);
 }
 
-static time_t		get_file_time(t_lsbox *lsbox, t_args *args)
+static time_t	get_file_time(t_lsbox *lsbox, t_args *args)
 {
 	if (lsbox->opt.c)
 		return (args->attr.c_time);
 	if (lsbox->opt.u)
 		return (args->attr.u_time);
-	if (lsbox->opt.U)
-		return (args->attr.U_time);
+	if (lsbox->opt.cap_u)
+		return (args->attr.cap_u_time);
 	else
 		return (args->attr.t_time);
 }
 
-void				d_time(t_lsbox *lsbox, t_args *args)
+void			d_time(t_lsbox *lsbox, t_args *args)
 {
 	char			*string;
 	time_t			time;
@@ -88,7 +88,7 @@ void				d_time(t_lsbox *lsbox, t_args *args)
 	string = ctime(&time);
 	ft_printf("%3.3s ", string + 4);
 	ft_printf("%2.2s ", string + 8);
-	if (lsbox->opt.T)
+	if (lsbox->opt.cap_t)
 		ft_printf("%.13s ", string + 11);
 	else if (time < lsbox->six_months_ago || time > lsbox->now)
 		ft_printf("%5.4s ", string + 20);
