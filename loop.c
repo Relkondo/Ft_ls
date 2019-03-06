@@ -6,7 +6,7 @@
 /*   By: scoron <scoron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/04 21:44:11 by scoron            #+#    #+#             */
-/*   Updated: 2019/03/06 18:49:20 by scoron           ###   ########.fr       */
+/*   Updated: 2019/03/06 18:53:47 by scoron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ static t_args		*get_directory_contents(t_lsbox *lsbox, t_args *args)
 	read_dir.head = NULL;
 	if (!(read_dir.directory = opendir(read_dir.args->attr.path)))
 	{
-		ft_printf("ft_ls: %s: Permission denied\n", read_dir.args->attr.str);
+		ft_printf("ls: %s: Permission denied\n", read_dir.args->attr.str);
 		return (NULL);
 	}
 	while ((read_dir.file = readdir(read_dir.directory)))
