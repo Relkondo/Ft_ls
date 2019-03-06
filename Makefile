@@ -17,8 +17,8 @@ SRCS = parse_attr.c \
 	   calculate_lsug.c \
 	   calculate_fic.c \
 	   display.c \
-	   display2.c \
-	   file_name.c \
+	   d_support.c \
+	   d_file_name.c \
 	   free.c \
 	   loop.c \
 	   loop_root_files.c \
@@ -28,7 +28,7 @@ SRCS = parse_attr.c \
 	   sort.c \
 	   opt_effect.c \
 	   sort_func.c \
-	   type.c \
+	   d_type.c \
 	   loop_in_dir.c \
 	   parse_opt.c \
 	   path.c \

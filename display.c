@@ -13,13 +13,13 @@
 #include "ft_ls.h"
 #include <sys/types.h>
 
-void				links(t_lsbox *lsbox, t_args *args)
+void				d_links(t_lsbox *lsbox, t_args *args)
 {
 		print_spaces(get_diff(lsbox, NULL, args->attr.links, LEN_LINKS));
 		ft_printf("%d ", args->attr.links);
 }
 
-void				ino(t_lsbox *lsbox, t_args *args)
+void				d_ino(t_lsbox *lsbox, t_args *args)
 {
 		if (!lsbox->opt.i)
 				return ;
@@ -27,7 +27,7 @@ void				ino(t_lsbox *lsbox, t_args *args)
 		ft_printf("%lld ", args->attr.ino);
 }
 
-void				user_and_group(t_lsbox *lsbox, t_args *args)
+void				d_user_and_group(t_lsbox *lsbox, t_args *args)
 {
 		if (!(lsbox->opt.g))
 		{
@@ -42,8 +42,8 @@ void				user_and_group(t_lsbox *lsbox, t_args *args)
 		if (lsbox->opt.g && lsbox->opt.o)
 				ft_printf("  ");
 }
-
-void				size(t_lsbox *lsbox, t_args *args)
+ 
+void				d_size(t_lsbox *lsbox, t_args *args)
 {
 	if (args->attr.chr)
 	{
@@ -62,14 +62,14 @@ void				display(t_lsbox *lsbox, t_args *args)
 		t_attr			*attr;
 
 		attr = &args->attr;
-		ino(lsbox, args);
+		d_ino(lsbox, args);
 		if (lsbox->opt.l)
 		{
-				type(lsbox, args);
-				links(lsbox, args);
-				user_and_group(lsbox, args);
-				size(lsbox, args);
-				show_time(lsbox, args);
+				d_type(lsbox, args);
+				d_links(lsbox, args);
+				d_user_and_group(lsbox, args);
+				d_size(lsbox, args);
+				d_time(lsbox, args);
 		}
-		file_name(lsbox, args);
+		d_file_name(lsbox, args);
 }

@@ -75,7 +75,7 @@ static void			swap_exec_char(t_args *args, int i, char *exec_char)
 		*exec_char = ((args->attr.mode & S_IXOTH) ? 't' : 'T');
 }
 
-void				type(t_lsbox *lsbox, t_args *args)
+void				d_type(t_lsbox *lsbox, t_args *args)
 {
 	int				i;
 	int				type;

@@ -56,11 +56,8 @@ int					get_diff(t_lsbox *lsbox, char *str, long long num, int flag)
 	}
 	if (flag == LEN_SIZE_C)
 		return (lsbox->len_size - CHRSIZELEN);
-	while (num >= 10)
-	{
+	while (num >= 10 && len++)
 		num /= 10;
-		len++;
-	}
 	if (flag == LEN_INO)
 		return (lsbox->len_ino - len);
 	if (flag == LEN_LINKS)
@@ -82,7 +79,7 @@ static time_t		get_file_time(t_lsbox *lsbox, t_args *args)
 		return (args->attr.t_time);
 }
 
-void				show_time(t_lsbox *lsbox, t_args *args)
+void				d_time(t_lsbox *lsbox, t_args *args)
 {
 	char			*string;
 	time_t			time;

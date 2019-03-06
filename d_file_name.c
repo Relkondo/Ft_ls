@@ -55,7 +55,7 @@ static void			print_colour(t_args *args)
 	ft_putstr(COL_CLR);
 }
 
-void				file_name(t_lsbox *lsbox, t_args *args)
+void				d_file_name(t_lsbox *lsbox, t_args *args)
 {
 	t_attr			*attr;
 	int				len;
