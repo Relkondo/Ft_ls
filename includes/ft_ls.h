@@ -6,7 +6,7 @@
 /*   By: scoron <scoron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/03 12:40:38 by scoron            #+#    #+#             */
-/*   Updated: 2019/03/05 10:09:00 by scoron           ###   ########.fr       */
+/*   Updated: 2019/03/06 13:14:32 by scoron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,17 +24,13 @@
 # include <sys/types.h>
 # include <pwd.h>
 
-
 # define COLOUR		false
 # define COLUMN		false
-
-# define ALL_OPT		"-ABCFGHLNOPRSTUWabcdefghiklmnopqrstuwx1@"
-# define SIX_MONTHS		15768000
+# define ALL_OPT	"-ABCFGHLNOPRSTUWabcdefghiklmnopqrstuwx1@"
+# define SIX_MONTHS	15768000
 # define RL_BUFSIZE	1024
 # define NUM_FILES	"--------------\nFiles:\n%d"
-
 # define CHRSIZELEN	8
-
 # define LEN_INO	1
 # define LEN_LINKS	2
 # define LEN_USER	3
@@ -42,7 +38,6 @@
 # define LEN_SIZE	5
 # define LEN_SIZE_C	6
 # define LEN_NAME	7
-
 # define PER_LEN	11
 # define PER_BLK	'b'
 # define PER_CHR	'c'
@@ -63,7 +58,6 @@
 # define PER_5		PER_R PER_N PER_X
 # define PER_6		PER_R PER_W PER_N
 # define PER_7		PER_R PER_W PER_X
-
 # define TYPE_IFO	010000
 # define TYPE_CHR	020000
 # define TYPE_DIR	040000
@@ -72,7 +66,6 @@
 # define TYPE_LNK	0120000
 # define TYPE_SOCK	0140000
 # define TYPE_WHT	0160000
-
 # define COL_IFO	"\x1b[33m"
 # define COL_CHR	"\x1b[34;43m"
 # define COL_DIR	"\x1b[1m\x1b[36m"

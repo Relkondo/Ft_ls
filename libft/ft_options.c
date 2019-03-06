@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_options.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: scoron <scoron@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/03/06 13:11:24 by scoron            #+#    #+#             */
+/*   Updated: 2019/03/06 13:11:46 by scoron           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "libft.h"
 
@@ -9,10 +20,6 @@ static void			treat_opt(char c, unsigned long long *opt, char *all_opt)
 		*opt |= (1 << (c - 39));
 	else if (c >= '0' && c <= '9' && ft_strchr(all_opt, c))
 		*opt |= (1 << (c + 4));
-/*	else if (ft_strchr(all_opt, c))
-		*opt |= (1 << 62);
-	else
-		*opt |= (1 << 63);*/
 }
 
 unsigned long long	ft_opts(char **argv, char *all_opt)

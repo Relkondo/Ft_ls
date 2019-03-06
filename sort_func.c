@@ -6,7 +6,7 @@
 /*   By: scoron <scoron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/04 21:44:58 by scoron            #+#    #+#             */
-/*   Updated: 2019/03/05 00:35:12 by scoron           ###   ########.fr       */
+/*   Updated: 2019/03/06 13:03:57 by scoron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ bool				sort_alpha(t_lsbox *lsbox)
 bool				sort_size(t_lsbox *lsbox)
 {
 	if (!lsbox->opt.r)
-	{	
+	{
 		if (lsbox->track->attr.size < lsbox->track->next->attr.size)
 			return (true);
 		return (false);

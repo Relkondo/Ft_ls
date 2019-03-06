@@ -6,7 +6,7 @@
 /*   By: scoron <scoron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/03 12:42:04 by scoron            #+#    #+#             */
-/*   Updated: 2019/03/05 09:18:46 by scoron           ###   ########.fr       */
+/*   Updated: 2019/03/06 13:03:44 by scoron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 #include <sys/types.h>
 #include <pwd.h>
 
-static void			get_sym_path(t_lsbox *lsbox, t_args *args, struct stat *func)
+static void	get_sym_path(t_lsbox *lsbox, t_args *args, struct stat *func)
 {
 	int				len;
 	t_attr			*attr;
@@ -26,11 +26,11 @@ static void			get_sym_path(t_lsbox *lsbox, t_args *args, struct stat *func)
 	if ((len = readlink(attr->path, attr->sym_path, RL_BUFSIZE)) != -1)
 		attr->sym_path[len] = '\0';
 	if (!(lsbox->opt.R) && !lstat(args->attr.sym_path, func))
-			if ((TYPE_DIR & func->st_mode) == TYPE_DIR)
-				args->attr.dir = 1;
+		if ((TYPE_DIR & func->st_mode) == TYPE_DIR)
+			args->attr.dir = 1;
 }
 
-static void			get_type(t_lsbox *lsbox, t_args *args, struct stat *func)
+static void	get_type(t_lsbox *lsbox, t_args *args, struct stat *func)
 {
 	int				type;
 
@@ -56,7 +56,7 @@ static void			get_type(t_lsbox *lsbox, t_args *args, struct stat *func)
 		args->attr.blk = 1;
 }
 
-static void			get_user_group(t_lsbox *lsbox, t_args *args, struct stat *func)
+static void	get_user_group(t_lsbox *lsbox, t_args *args, struct stat *func)
 {
 	struct passwd	*passwd;
 	struct group	*group;
@@ -75,7 +75,7 @@ static void			get_user_group(t_lsbox *lsbox, t_args *args, struct stat *func)
 		ls_error(lsbox, "get attr.group failed");
 }
 
-void				read_f(t_lsbox *lsbox, t_args *args, struct stat *func)
+void		read_f(t_lsbox *lsbox, t_args *args, struct stat *func)
 {
 	lsbox->total_blocks += func->st_blocks;
 	args->attr.ino = func->st_ino;
@@ -92,7 +92,7 @@ void				read_f(t_lsbox *lsbox, t_args *args, struct stat *func)
 	get_type(lsbox, args, func);
 }
 
-void				register_attr(t_lsbox *lsbox)
+void		register_attr(t_lsbox *lsbox)
 {
 	t_args				*args;
 	struct stat			func;
