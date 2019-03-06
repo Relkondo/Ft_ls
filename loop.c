@@ -20,7 +20,7 @@ static bool			read_directory(t_read_dir *read_dir)
 			|| (read_dir->lsbox->opt.a && read_dir->file->d_name[0] == '.')
 			|| (read_dir->file->d_name[0] != '.'))
 	{
-		if (!(read_dir->tmp = create_args()))
+		if (!(read_dir->tmp = add_args_element()))
 		{
 			free_args(read_dir->lsbox, &read_dir->head);
 			return (false);
@@ -80,7 +80,7 @@ void				ls_loop(t_lsbox *lsbox, t_args *args)
 	if (!(head = get_directory_contents(lsbox, args)))
 		return ;
 	lsbox->current_args = head;
-	attributes(lsbox);
+	register_attr(lsbox);
 	sort(lsbox);
 	head = lsbox->current_args;
 	loop_valid_dir(lsbox, head);

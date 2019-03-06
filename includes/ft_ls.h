@@ -185,7 +185,7 @@ typedef struct		s_read_dir
 	struct dirent	*file;
 }					t_read_dir;
 
-void				attributes(t_lsbox *lsbox);
+void				register_attr(t_lsbox *lsbox);
 void				calc_len_links(t_lsbox *lsbox, t_args *args);
 void				calc_len_size(t_lsbox *lsbox, t_args *args);
 void				calc_len_user(t_lsbox *lsbox, t_args *args);
@@ -226,17 +226,15 @@ void				assign_sort(t_lsbox *lsbox);
 bool				sort_alpha(t_lsbox *lsbox);
 bool				sort_size(t_lsbox *lsbox);
 bool				sort_time(t_lsbox *lsbox);
-bool				sort_alpha_r(t_lsbox *lsbox);
-bool				sort_size_r(t_lsbox *lsbox);
 bool				sort_time_r(t_lsbox *lsbox);
-void				config_opts(t_lsbox *lsbox);
+void				opt_effect(t_lsbox *lsbox);
 void				ls_error(t_lsbox *lsbox, char *str);
 void				no_file(t_lsbox *lsbox, t_args *args);
-t_args				*create_args(void);
+t_args				*add_args_element(void);
 bool				is_executeable(t_args *args);
 void				path(t_lsbox *lsbox, t_args *args, char *path, char *name);
 void				type(t_lsbox *lsbox, t_args *args);
-void				parse_args(t_lsbox *lsbox, char **argv);
+void				register_args(t_lsbox *lsbox, char **argv);
 void				path_r(t_lsbox *lsbox, t_args *args, char *path, char *name);
 void				read_f(t_lsbox *lsbox, t_args *args, struct stat *func);
 #endif

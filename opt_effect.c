@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sort_assign.c                                      :+:      :+:    :+:   */
+/*   opt_effect.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: scoron <scoron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,30 +12,36 @@
 
 #include "ft_ls.h"
 
-static void			sort_reverse(t_lsbox *lsbox)
+void				assign_sort(t_lsbox *lsbox)
 {
 	if (lsbox->opt.S)
-		lsbox->sort_func = &sort_size_r;
-	else if (lsbox->opt.t)
+		lsbox->sort_func = &sort_size;
+	else if (lsbox->opt.t && !lsbox->opt.r)
+		lsbox->sort_func = &sort_time;
+	else if (lsbox->opt.t && lsbox->opt.r)
 		lsbox->sort_func = &sort_time_r;
 	else
 		lsbox->sort_func = NULL;
 }
 
-static void			sort_normal(t_lsbox *lsbox)
+void				opt_effect(t_lsbox *lsbox)
 {
+	if (COLOUR)
+		lsbox->opt.G = 1;
+	if (COLUMN)
+		lsbox->opt.x = 1;
 	if (lsbox->opt.S)
-		lsbox->sort_func = &sort_size;
-	else if (lsbox->opt.t)
-		lsbox->sort_func = &sort_time;
-	else
-		lsbox->sort_func = NULL;
-}
-
-void				assign_sort(t_lsbox *lsbox)
-{
-	if (!lsbox->opt.r)
-		sort_normal(lsbox);
-	else
-		sort_reverse(lsbox);
+		lsbox->opt.t = 0;
+	if (lsbox->opt.l)
+		lsbox->opt.x = 0;
+	if (lsbox->opt.d)
+		lsbox->opt.R = 0;
+	if (lsbox->opt.f)
+		lsbox->opt.a = 1;
+	if (lsbox->opt.one)
+	{
+		lsbox->opt.l = 0;
+		lsbox->opt.x = 0;
+	}
+	assign_sort(lsbox);
 }

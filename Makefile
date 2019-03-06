@@ -13,7 +13,7 @@
 
 NAME = ft_ls
 
-SRCS = attributes.c \
+SRCS = parse_attr.c \
 	   calculate.c \
 	   calculate2.c \
 	   display.c \
@@ -24,15 +24,14 @@ SRCS = attributes.c \
 	   loop_files.c \
 	   loop_init.c \
 	   main.c \
-	   parse.c \
+	   parse_args.c \
 	   sort.c \
-	   sort_assign.c \
+	   opt_effect.c \
 	   sort_func.c \
-	   sort_func_r.c \
 	   support.c \
 	   type.c \
 	   loop_valid_dir.c \
-	   register_opt.c \
+	   parse_opt.c \
 	   path.c \
 
 OBJS = $(SRCS:.c=.o)

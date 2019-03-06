@@ -36,9 +36,11 @@ void		parsing(t_lsbox *lsbox)
 		lsbox->argv_opt = ft_strndup_p(lsbox->argv, lsbox->nb_opt);
 		if (!(lsbox->argv_opt))
 			ls_error(lsbox, "Malloc Argv_opt Failed");
-		parse_args(lsbox, lsbox->argv + lsbox->nb_opt);
+		register_args(lsbox, lsbox->argv + lsbox->nb_opt);
 		register_opts(lsbox);
-		config_opts(lsbox);
+		opt_effect(lsbox);
+		lsbox->current_args = lsbox->args;
+		register_attr(lsbox);
 }
 
 static void	check_headers(t_lsbox *lsbox)
@@ -68,8 +70,6 @@ int			main(int argc, char **argv)
 
 		lsbox = init_lsbox(argc, argv);
 		parsing(&lsbox);
-		lsbox.current_args = lsbox.args;
-		attributes(&lsbox);
 		sort(&lsbox);
 		lsbox.args = lsbox.current_args;
 		check_headers(&lsbox);

@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "ft_ls.h"
-#include <stdio.h>
 
 void	opt_error(t_lsbox *lsbox, char c)
 {

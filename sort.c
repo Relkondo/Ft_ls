@@ -52,10 +52,7 @@ void				sort(t_lsbox *lsbox)
 	if (lsbox->opt.f)
 		return ;
 	tmp = lsbox->sort_func;
-	if (!lsbox->opt.r)
-		lsbox->sort_func = &sort_alpha;
-	else
-		lsbox->sort_func = &sort_alpha_r;
+	lsbox->sort_func = &sort_alpha;
 	lsbox->head = lsbox->current_args;
 	do_sort(lsbox);
 	lsbox->sort_func = tmp;

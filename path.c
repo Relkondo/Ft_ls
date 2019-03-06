@@ -12,33 +12,6 @@
 
 #include "ft_ls.h"
 
-/*
-   void				path(t_lsbox *lsbox, t_args *args, char *path, char *name)
-   {
-   char			*new_path;
-   char			*tmp;
-
-   if (!(args->attr.str = ft_strdup(name)))
-   ls_error(lsbox, "malloc attr.str failed");
-   if (!(new_path = ft_strnew(ft_strlen(path) + ft_strlen(name) + 1)))
-   ls_error(lsbox, "malloc new_path failed");
-   else
-   {
-   tmp = new_path;
-   if (ft_strcmp(path, "."))
-   {
-   while (path && *path)
- *(tmp++) = *(path++);
- *(tmp++) = '/';
- }
- while (name && *name)
- *(tmp++) = *(name++);
- args->attr.path = new_path;
- }
- }
- */
-
-
 void		path_copy(char *new_path, char *path, char *name)
 {
 	char			*tmp;

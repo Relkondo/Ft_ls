@@ -12,14 +12,24 @@
 
 #include "ft_ls.h"
 
-void			parse_args(t_lsbox *lsbox, char **argv)
+t_args				*add_args_element(void)
+{
+	t_args			*args;
+
+	if (!(args = (t_args *)malloc(sizeof(t_args))))
+		return (NULL);
+	ft_bzero(args, sizeof(*args));
+	return (args);
+}
+
+void			register_args(t_lsbox *lsbox, char **argv)
 {
 	t_args			*args;
 	t_args			*last_args;
 
 	if (!*argv)
 	{
-		if (!(lsbox->args = create_args()))
+		if (!(lsbox->args = add_args_element()))
 			ls_error(lsbox, "Malloc Failed");
 		if (!(lsbox->args->attr.str = ft_strdup("."))
 				|| !(lsbox->args->attr.path = ft_strdup(".")))
@@ -27,7 +37,7 @@ void			parse_args(t_lsbox *lsbox, char **argv)
 	}
 	while (*argv)
 	{
-		if (!(args = create_args()))
+		if (!(args = add_args_element()))
 			ls_error(lsbox, "Malloc Failed");
 		path(lsbox, args, ".", *argv);
 		if (!lsbox->args)

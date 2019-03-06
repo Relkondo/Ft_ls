@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   attributes.c                                       :+:      :+:    :+:   */
+/*   parse_attr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: scoron <scoron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -92,7 +92,7 @@ void				read_f(t_lsbox *lsbox, t_args *args, struct stat *func)
 	get_type(lsbox, args, func);
 }
 
-void				attributes(t_lsbox *lsbox)
+void				register_attr(t_lsbox *lsbox)
 {
 	t_args				*args;
 	struct stat			func;
