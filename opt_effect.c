@@ -6,7 +6,7 @@
 /*   By: scoron <scoron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/04 21:44:52 by scoron            #+#    #+#             */
-/*   Updated: 2019/03/06 13:50:51 by scoron           ###   ########.fr       */
+/*   Updated: 2019/03/06 14:48:16 by scoron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,6 @@ void				opt_effect(t_lsbox *lsbox)
 	if (lsbox->opt.f)
 		lsbox->opt.a = 1;
 	if (lsbox->opt.one)
-	{
-		lsbox->opt.l = 0;
 		lsbox->opt.x = 0;
-	}
 	assign_sort(lsbox);
 }

@@ -6,7 +6,7 @@
 /*   By: scoron <scoron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/04 21:44:28 by scoron            #+#    #+#             */
-/*   Updated: 2019/03/06 13:07:55 by scoron           ###   ########.fr       */
+/*   Updated: 2019/03/06 14:45:36 by scoron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	no_file(t_lsbox *lsbox, t_args *args)
 {
 	if (args->attr.no_file && lsbox)
-		ft_printf("ft_ls: %s: No such file or directory\n", args->attr.str);
+		ft_printf("ls: %s: No such file or directory\n", args->attr.str);
 	args = args->next;
 }
 
