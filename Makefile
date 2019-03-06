@@ -6,7 +6,7 @@
 #    By: scoron <scoron@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/03/03 12:40:23 by scoron            #+#    #+#              #
-#    Updated: 2019/03/06 14:30:09 by scoron           ###   ########.fr        #
+#    Updated: 2019/03/06 15:05:34 by scoron           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,13 +37,15 @@ OBJS = $(SRCS:.c=.o)
 
 HEADER = ft_ls.h
 
+FLAGS = -Wall -Wextra -Werror
+
 all : $(NAME)
 
 $(NAME) : lib $(OBJS)
-	@gcc -o $(NAME) $(OBJS) -I libft/includes -L libft/ -lft
+	@gcc -o $(NAME) $(OBJS) $(FLAGS) -I libft/includes -L libft/ -lft
 
 %.o : %.c includes/$(HEADER)
-	@clang -Wall -Wextra -Werror -I includes -c $< -o $@
+	@clang $(FLAGS) -I includes -c $< -o $@
 
 clean :
 	@make -C libft/ clean
