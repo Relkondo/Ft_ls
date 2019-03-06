@@ -6,7 +6,7 @@
 /*   By: scoron <scoron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/03 12:40:38 by scoron            #+#    #+#             */
-/*   Updated: 2019/03/06 18:49:42 by scoron           ###   ########.fr       */
+/*   Updated: 2019/03/06 20:00:30 by scoron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -215,7 +215,7 @@ void				assign_sort(t_lsbox *lsbox);
 void				opt_effect(t_lsbox *lsbox);
 t_args				*add_args_element(void);
 void				register_args(t_lsbox *lsbox, char **argv);
-void				read_f(t_lsbox *lsbox, t_args *args, struct stat *func);
+void				read_f(t_lsbox *lsbox, t_args *args, struct stat *st_attr);
 void				register_attr(t_lsbox *lsbox);
 void				opt_error(t_lsbox *lsbox, char c);
 int					count_opt(t_lsbox *lsbox);

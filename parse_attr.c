@@ -6,7 +6,7 @@
 /*   By: scoron <scoron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/03 12:42:04 by scoron            #+#    #+#             */
-/*   Updated: 2019/03/06 18:50:11 by scoron           ###   ########.fr       */
+/*   Updated: 2019/03/06 19:59:18 by scoron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 #include <sys/types.h>
 #include <pwd.h>
 
-static void	get_sym_path(t_lsbox *lsbox, t_args *args, struct stat *func)
+static void	get_sym_path(t_lsbox *lsbox, t_args *args, struct stat *st_attr)
 {
 	int				len;
 	t_attr			*attr;
@@ -25,12 +25,12 @@ static void	get_sym_path(t_lsbox *lsbox, t_args *args, struct stat *func)
 	attr = &args->attr;
 	if ((len = readlink(attr->path, attr->sym_path, RL_BUFSIZE)) != -1)
 		attr->sym_path[len] = '\0';
-	if (!(lsbox->opt.cap_r) && !lstat(args->attr.sym_path, func))
-		if ((TYPE_DIR & func->st_mode) == TYPE_DIR)
+	if (!(lsbox->opt.cap_r) && !lstat(args->attr.sym_path, st_attr))
+		if ((TYPE_DIR & st_attr->st_mode) == TYPE_DIR)
 			args->attr.dir = 1;
 }
 
-static void	get_type(t_lsbox *lsbox, t_args *args, struct stat *func)
+static void	get_type(t_lsbox *lsbox, t_args *args, struct stat *st_attr)
 {
 	int				type;
 
@@ -38,7 +38,7 @@ static void	get_type(t_lsbox *lsbox, t_args *args, struct stat *func)
 	if ((TYPE_LNK & type) == TYPE_LNK)
 	{
 		args->attr.lnk = 1;
-		get_sym_path(lsbox, args, func);
+		get_sym_path(lsbox, args, st_attr);
 	}
 	else if ((TYPE_REG & type) == TYPE_REG)
 		args->attr.reg = 1;
@@ -56,52 +56,52 @@ static void	get_type(t_lsbox *lsbox, t_args *args, struct stat *func)
 		args->attr.blk = 1;
 }
 
-static void	get_user_group(t_lsbox *lsbox, t_args *args, struct stat *func)
+static void	get_user_group(t_lsbox *lsbox, t_args *args, struct stat *st_attr)
 {
 	struct passwd	*passwd;
 	struct group	*group;
 
-	if ((passwd = getpwuid(func->st_uid)))
+	if ((passwd = getpwuid(st_attr->st_uid)))
 		args->attr.user = ft_strdup(passwd->pw_name);
 	else
-		args->attr.user = ft_itoa(func->st_uid);
+		args->attr.user = ft_itoa(st_attr->st_uid);
 	if (!args->attr.user)
 		ls_error(lsbox, "get attr.user failed");
-	if ((group = getgrgid(func->st_gid)))
+	if ((group = getgrgid(st_attr->st_gid)))
 		args->attr.group = ft_strdup(group->gr_name);
 	else
-		args->attr.group = ft_itoa(func->st_gid);
+		args->attr.group = ft_itoa(st_attr->st_gid);
 	if (!args->attr.group)
 		ls_error(lsbox, "get attr.group failed");
 }
 
-void		read_f(t_lsbox *lsbox, t_args *args, struct stat *func)
+void		read_f(t_lsbox *lsbox, t_args *args, struct stat *st_attr)
 {
-	lsbox->total_blocks += func->st_blocks;
-	args->attr.ino = func->st_ino;
-	args->attr.mode = func->st_mode;
-	args->attr.type = func->st_mode;
-	args->attr.links = func->st_nlink;
-	get_user_group(lsbox, args, func);
-	args->attr.rdev = func->st_rdev;
-	args->attr.size = func->st_size;
-	args->attr.c_time = func->st_ctimespec.tv_sec;
-	args->attr.t_time = func->st_mtimespec.tv_sec;
-	args->attr.u_time = func->st_atimespec.tv_sec;
-	args->attr.cap_u_time = func->st_birthtimespec.tv_sec;
-	get_type(lsbox, args, func);
+	lsbox->total_blocks += st_attr->st_blocks;
+	args->attr.ino = st_attr->st_ino;
+	args->attr.mode = st_attr->st_mode;
+	args->attr.type = st_attr->st_mode;
+	args->attr.links = st_attr->st_nlink;
+	get_user_group(lsbox, args, st_attr);
+	args->attr.rdev = st_attr->st_rdev;
+	args->attr.size = st_attr->st_size;
+	args->attr.c_time = st_attr->st_ctimespec.tv_sec;
+	args->attr.t_time = st_attr->st_mtimespec.tv_sec;
+	args->attr.u_time = st_attr->st_atimespec.tv_sec;
+	args->attr.cap_u_time = st_attr->st_birthtimespec.tv_sec;
+	get_type(lsbox, args, st_attr);
 }
 
 void		register_attr(t_lsbox *lsbox)
 {
 	t_args				*args;
-	struct stat			func;
+	struct stat			st_attr;
 
 	args = lsbox->current_args;
 	while (args)
 	{
-		if (!lstat(args->attr.path, &func))
-			read_f(lsbox, args, &func);
+		if (!lstat(args->attr.path, &st_attr))
+			read_f(lsbox, args, &st_attr);
 		else
 			args->attr.no_file = 1;
 		args = args->next;
