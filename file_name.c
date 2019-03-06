@@ -69,6 +69,6 @@ void				file_name(t_lsbox *lsbox, t_args *args)
 	print_end_char(lsbox, args);
 	if (lsbox->opt.l && attr->lnk)
 		ft_printf(" -> %s", attr->sym_path);
-	if (lsbox->number_of_columns && !lsbox->opt.l)
+	if (lsbox->nb_columns && !lsbox->opt.l)
 		print_spaces(get_diff(lsbox, attr->str, len, LEN_NAME) + 1);
 }

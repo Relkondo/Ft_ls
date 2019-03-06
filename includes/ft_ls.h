@@ -28,7 +28,7 @@
 # define COLOUR		false
 # define COLUMN		false
 
-# define ALL_OPT		"-ABCFGHLOPRSTUWabcdefghiklmnopqrstuwx1@"
+# define ALL_OPT		"-ABCFGHLNOPRSTUWabcdefghiklmnopqrstuwx1@"
 # define SIX_MONTHS		15768000
 # define RL_BUFSIZE	1024
 # define NUM_FILES	"--------------\nFiles:\n%d"
@@ -166,7 +166,7 @@ typedef struct			s_lsbox
 	int				items_to_display;
 	int				total_blocks;
 	int				width;
-	int				number_of_columns;
+	int				nb_columns;
 	t_args			*args;
 	t_args			*current_args;
 	t_args			*head;
@@ -185,16 +185,14 @@ typedef struct		s_read_dir
 	struct dirent	*file;
 }					t_read_dir;
 
-void				register_attr(t_lsbox *lsbox);
+bool				is_executeable(t_args *args);
+void				calc_len_file_name(t_lsbox *lsbox, t_args *args);
+void				calc_len_ino(t_lsbox *lsbox, t_args *args);
+void				calc_nb_col(t_lsbox *lsbox);
 void				calc_len_links(t_lsbox *lsbox, t_args *args);
 void				calc_len_size(t_lsbox *lsbox, t_args *args);
 void				calc_len_user(t_lsbox *lsbox, t_args *args);
-void				calculate_number_of_columns(t_lsbox *lsbox);
-bool				is_executeable(t_args *args);
-void				calc_len_file_name(t_lsbox *lsbox, t_args *args);
 void				calc_len_group(t_lsbox *lsbox, t_args *args);
-void				calc_len_ino(t_lsbox *lsbox, t_args *args);
-void				config_opts(t_lsbox *lsbox);
 void				links(t_lsbox *lsbox, t_args *args);
 void				ino(t_lsbox *lsbox, t_args *args);
 void				user_and_group(t_lsbox *lsbox, t_args *args);
@@ -202,39 +200,42 @@ void				size(t_lsbox *lsbox, t_args *args);
 void				display(t_lsbox *lsbox, t_args *args);
 void				print_path(t_lsbox *lsbox, t_args *args, bool do_print);
 void				print_spaces(int diff);
-int					get_diff(t_lsbox *lsbox, char *str, long long num, int flag);
+int				get_diff(t_lsbox *lsbox, char *str, long long num, int flag);
 void				show_time(t_lsbox *lsbox, t_args *args);
 void				file_name(t_lsbox *lsbox, t_args *args);
 void				free_args(t_lsbox *lsbox, t_args **head);
 void				free_ls(t_lsbox *lsbox);
+void				ls_error(t_lsbox *lsbox, char *str);
 void				ls_loop(t_lsbox *lsbox, t_args *args);
-void				loop_files(t_lsbox *lsbox);
+void				loop_in_dir(t_lsbox *lsbox, t_args *head);
+void				loop_in_dir(t_lsbox *lsbox, t_args *head);
+void				no_file(t_lsbox *lsbox, t_args *args);
 void				loop_no_file(t_lsbox *lsbox);
-void				loop_dirs(t_lsbox *lsbox);
+void				loop_root_dirs(t_lsbox *lsbox);
 void				loop_init(t_lsbox *lsbox);
-void				loop_valid_dir(t_lsbox *lsbox, t_args *head);
+void				loop_root_files(t_lsbox *lsbox);
 t_lsbox				init_lsbox(int argc, char **argv);
 void				parsing(t_lsbox *lsbox);
-int					main(int argc, char **argv);
+int				main(int argc, char **argv);
+void				assign_sort(t_lsbox *lsbox);
+void				opt_effect(t_lsbox *lsbox);
+t_args				*add_args_element(void);
+void				register_args(t_lsbox *lsbox, char **argv);
+void				read_f(t_lsbox *lsbox, t_args *args, struct stat *func);
+void				register_attr(t_lsbox *lsbox);
 void				opt_error(t_lsbox *lsbox, char c);
-int					count_opt(t_lsbox *lsbox);
+int				count_opt(t_lsbox *lsbox);
 void				fetch(t_lsbox *lsbox, char c);
 void				init_fetch(t_lsbox *lsbox);
 void				register_opts(t_lsbox *lsbox);
+void				path_copy(char *new_path, char *path, char *name);
+void				path(t_lsbox *lsbox, t_args *args, char *path, char *name);
+void				path_r(t_lsbox *lsbox, t_args *args, char *path, char *name);
 void				sort(t_lsbox *lsbox);
-void				assign_sort(t_lsbox *lsbox);
 bool				sort_alpha(t_lsbox *lsbox);
 bool				sort_size(t_lsbox *lsbox);
 bool				sort_time(t_lsbox *lsbox);
 bool				sort_time_r(t_lsbox *lsbox);
-void				opt_effect(t_lsbox *lsbox);
-void				ls_error(t_lsbox *lsbox, char *str);
-void				no_file(t_lsbox *lsbox, t_args *args);
-t_args				*add_args_element(void);
-bool				is_executeable(t_args *args);
-void				path(t_lsbox *lsbox, t_args *args, char *path, char *name);
 void				type(t_lsbox *lsbox, t_args *args);
-void				register_args(t_lsbox *lsbox, char **argv);
-void				path_r(t_lsbox *lsbox, t_args *args, char *path, char *name);
-void				read_f(t_lsbox *lsbox, t_args *args, struct stat *func);
+
 #endif

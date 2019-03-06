@@ -42,15 +42,6 @@ void				calc_len_file_name(t_lsbox *lsbox, t_args *args)
 		lsbox->len_file_name = len;
 }
 
-void				calc_len_group(t_lsbox *lsbox, t_args *args)
-{
-	int				len;
-
-	len = ft_strlen(args->attr.group);
-	if (len > lsbox->len_group)
-		lsbox->len_group = len;
-}
-
 void				calc_len_ino(t_lsbox *lsbox, t_args *args)
 {
 	int				len;
@@ -65,4 +56,14 @@ void				calc_len_ino(t_lsbox *lsbox, t_args *args)
 	}
 	if (len > lsbox->len_ino)
 		lsbox->len_ino = len;
+}
+
+void				calc_nb_col(t_lsbox *lsbox)
+{
+	int				column_width;
+
+	column_width = lsbox->len_file_name + 1;
+	if (lsbox->opt.i)
+		column_width += lsbox->len_ino + 1;
+	lsbox->nb_columns = lsbox->width / column_width;
 }

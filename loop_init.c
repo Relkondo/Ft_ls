@@ -13,6 +13,13 @@
 
 #include "ft_ls.h"
 
+void	no_file(t_lsbox *lsbox, t_args *args)
+{
+	if (args->attr.no_file && lsbox)
+		ft_printf("ft_ls: %s: No such file or directory\n", args->attr.str);
+	args = args->next;
+}
+
 void	loop_no_file(t_lsbox *lsbox)
 {
 	t_args			*args;
@@ -26,7 +33,7 @@ void	loop_no_file(t_lsbox *lsbox)
 	}
 }
 
-void	loop_dirs(t_lsbox *lsbox)
+void	loop_root_dirs(t_lsbox *lsbox)
 {
 	t_args			*args;
 
@@ -44,6 +51,6 @@ void	loop_dirs(t_lsbox *lsbox)
 void	loop_init(t_lsbox *lsbox)
 {
 	loop_no_file(lsbox);
-	loop_files(lsbox);
-	loop_dirs(lsbox);
+	loop_root_files(lsbox);
+	loop_root_dirs(lsbox);
 }

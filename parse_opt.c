@@ -17,7 +17,7 @@ void	opt_error(t_lsbox *lsbox, char c)
 		ft_putstr_fd("ft_ls: illegal option -- ", 2);
 		write(2, &c, 1);
 		ft_putstr_fd("\nusage: ./ft_ls [", 2);
-		ft_putstr_fd(ALL_OPT, 2);
+		ft_putstr_fd("-ABCFGHLOPRSTUWabcdefghiklmnopqrstuwx1", 2);
 		ls_error(lsbox, "] [file ...]");
 }
 

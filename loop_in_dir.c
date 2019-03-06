@@ -24,7 +24,7 @@ static void			reset_lengths(t_lsbox *lsbox)
 	lsbox->total_blocks = 0;
 }
 
-static void			get_column_widths(t_lsbox *lsbox, t_args *args)
+static void			register_lengths(t_lsbox *lsbox, t_args *args)
 {
 	t_args			*head;
 
@@ -47,18 +47,18 @@ static void			get_column_widths(t_lsbox *lsbox, t_args *args)
 	}
 }
 
-static void			do_loop(t_lsbox *lsbox, t_args *args, int *position_on_row)
+static void			do_loop(t_lsbox *lsbox, t_args *args, int *row_pos)
 {
 	while (args)
 	{
 		if (!args->attr.no_file)
 		{
 			display(lsbox, args);
-			*position_on_row += 1;
-			if (*position_on_row >= lsbox->number_of_columns)
+			*row_pos += 1;
+			if (*row_pos >= lsbox->nb_columns)
 			{
 				ft_putchar('\n');
-				*position_on_row = 0;
+				*row_pos = 0;
 			}
 			else if (!lsbox->opt.x)
 				ft_putchar('\n');
@@ -67,21 +67,21 @@ static void			do_loop(t_lsbox *lsbox, t_args *args, int *position_on_row)
 	}
 }
 
-void				loop_valid_dir(t_lsbox *lsbox, t_args *head)
+void				loop_in_dir(t_lsbox *lsbox, t_args *head)
 {
 	t_args			*args;
-	int				position_on_row;
+	int				row_pos;
 
-	position_on_row = 0;
+	row_pos = 0;
 	if (lsbox->opt.d)
 		return ;
 	args = head;
 	if (lsbox->opt.l)
 		ft_printf("total %d\n", lsbox->total_blocks);
-	get_column_widths(lsbox, head);
-	calculate_number_of_columns(lsbox);
-	do_loop(lsbox, args, &position_on_row);
-	if (position_on_row && lsbox->opt.x)
+	register_lengths(lsbox, head);
+	calc_nb_col(lsbox);
+	do_loop(lsbox, args, &row_pos);
+	if (row_pos && lsbox->opt.x)
 		ft_putchar('\n');
 	if (lsbox->opt.N)
 		ft_printf(NUM_FILES, lsbox->items_to_display);

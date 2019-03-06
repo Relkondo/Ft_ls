@@ -13,12 +13,11 @@
 #include "ft_ls.h"
 #include <sys/stat.h>
 
-static bool			read_directory(t_read_dir *read_dir)
+static bool			register_dir(t_read_dir *read_dir)
 {
 	if ((read_dir->lsbox->opt.A && (ft_strcmp(read_dir->file->d_name, ".")
 					&& ft_strcmp(read_dir->file->d_name, "..")))
-			|| (read_dir->lsbox->opt.a && read_dir->file->d_name[0] == '.')
-			|| (read_dir->file->d_name[0] != '.'))
+			|| read_dir->lsbox->opt.a || (read_dir->file->d_name[0] != '.'))
 	{
 		if (!(read_dir->tmp = add_args_element()))
 		{
@@ -50,7 +49,7 @@ static t_args		*get_directory_contents(t_lsbox *lsbox, t_args *args)
 	}
 	while ((read_dir.file = readdir(read_dir.directory)))
 	{
-		if (!read_directory(&read_dir))
+		if (!register_dir(&read_dir))
 			return (NULL);
 	}
 	closedir(read_dir.directory);
@@ -83,7 +82,7 @@ void				ls_loop(t_lsbox *lsbox, t_args *args)
 	register_attr(lsbox);
 	sort(lsbox);
 	head = lsbox->current_args;
-	loop_valid_dir(lsbox, head);
+	loop_in_dir(lsbox, head);
 	if (lsbox->opt.R)
 	{
 		tmp = head;

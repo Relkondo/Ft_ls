@@ -14,23 +14,22 @@
 NAME = ft_ls
 
 SRCS = parse_attr.c \
-	   calculate.c \
-	   calculate2.c \
+	   calculate_lsug.c \
+	   calculate_fic.c \
 	   display.c \
 	   display2.c \
 	   file_name.c \
 	   free.c \
 	   loop.c \
-	   loop_files.c \
+	   loop_root_files.c \
 	   loop_init.c \
 	   main.c \
 	   parse_args.c \
 	   sort.c \
 	   opt_effect.c \
 	   sort_func.c \
-	   support.c \
 	   type.c \
-	   loop_valid_dir.c \
+	   loop_in_dir.c \
 	   parse_opt.c \
 	   path.c \
 

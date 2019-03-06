@@ -23,7 +23,7 @@ t_lsbox		init_lsbox(int argc, char **argv)
 		lsbox.argc = argc - 1;
 		lsbox.argv = argv + 1;
 		lsbox.headers = 0;
-		lsbox.number_of_columns = 0;
+		lsbox.nb_columns = 0;
 		if (ioctl(STDOUT_FILENO, TIOCGWINSZ, &wsize) == -1)
 			lsbox.opt.one = 1;
 		lsbox.width = wsize.ws_col;
@@ -49,14 +49,16 @@ static void	check_headers(t_lsbox *lsbox)
 		int				headers;
 		int				not_dir;
 
+		if (lsbox->opt.d)
+			return ;
 		args = lsbox->args;
 		headers = 0;
 		not_dir = 0;
 		while (args && !lsbox->headers)
 		{
-				if (!not_dir && !args->attr.dir && !lsbox->opt.d)
+				if (!not_dir && !args->attr.dir)
 						not_dir++;
-				if (args->attr.dir && !lsbox->opt.d)
+				if (args->attr.dir)
 						headers++;
 				if (headers > 1 || (headers && not_dir))
 						lsbox->headers = 1;

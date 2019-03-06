@@ -56,12 +56,11 @@ void				calc_len_user(t_lsbox *lsbox, t_args *args)
 		lsbox->len_user = len;
 }
 
-void				calculate_number_of_columns(t_lsbox *lsbox)
+void				calc_len_group(t_lsbox *lsbox, t_args *args)
 {
-	int				column_width;
+	int				len;
 
-	column_width = lsbox->len_file_name + 1;
-	if (lsbox->opt.i)
-		column_width += lsbox->len_ino + 1;
-	lsbox->number_of_columns = lsbox->width / column_width;
+	len = ft_strlen(args->attr.group);
+	if (len > lsbox->len_group)
+		lsbox->len_group = len;
 }
