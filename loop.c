@@ -6,7 +6,7 @@
 /*   By: scoron <scoron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/04 21:44:11 by scoron            #+#    #+#             */
-/*   Updated: 2019/03/06 19:47:13 by scoron           ###   ########.fr       */
+/*   Updated: 2019/03/13 19:33:33 by scoron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static bool			register_dir(t_read_dir *read_dir)
 			free_args(read_dir->lsbox, &read_dir->head);
 			return (false);
 		}
-		path_r(read_dir->lsbox, read_dir->tmp, read_dir->args->attr.path,
+		path(read_dir->lsbox, read_dir->tmp, read_dir->args->attr.path,
 				read_dir->file->d_name);
 		if (!read_dir->head)
 			read_dir->head = read_dir->tmp;
@@ -35,7 +35,7 @@ static bool			register_dir(t_read_dir *read_dir)
 	return (true);
 }
 
-static t_args		*get_directory_contents(t_lsbox *lsbox, t_args *args)
+static t_args		*get_dir_contents(t_lsbox *lsbox, t_args *args)
 {
 	t_read_dir		read_dir;
 
@@ -76,7 +76,7 @@ void				ls_loop(t_lsbox *lsbox, t_args *args)
 
 	print_path(lsbox, args, true);
 	check_headers(lsbox, args);
-	if (!(head = get_directory_contents(lsbox, args)))
+	if (!(head = get_dir_contents(lsbox, args)))
 		return ;
 	lsbox->current_args = head;
 	register_attr(lsbox);

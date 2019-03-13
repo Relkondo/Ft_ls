@@ -6,7 +6,7 @@
 /*   By: scoron <scoron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/03 12:40:38 by scoron            #+#    #+#             */
-/*   Updated: 2019/03/06 20:00:30 by scoron           ###   ########.fr       */
+/*   Updated: 2019/03/13 19:34:32 by scoron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -222,10 +222,7 @@ int					count_opt(t_lsbox *lsbox);
 void				fetch(t_lsbox *lsbox, char c);
 void				init_fetch(t_lsbox *lsbox);
 void				register_opts(t_lsbox *lsbox);
-void				path_copy(char *new_path, char *path, char *name);
 void				path(t_lsbox *lsbox, t_args *args, char *path, char *name);
-void				path_r(t_lsbox *lsbox, t_args *args,
-					char *path, char *name);
 void				sort(t_lsbox *lsbox);
 int					sort_alpha(t_lsbox *lsbox);
 int					sort_size(t_lsbox *lsbox);
