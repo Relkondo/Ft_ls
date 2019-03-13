@@ -6,13 +6,13 @@
 /*   By: scoron <scoron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/05 05:42:21 by scoron            #+#    #+#             */
-/*   Updated: 2019/03/13 22:40:56 by scoron           ###   ########.fr       */
+/*   Updated: 2019/03/13 23:07:12 by scoron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-static void		path_copy(t_lsbox *lsbox, char *new_path, char *path, char *name)
+static void	path_copy(t_lsbox *lsbox, char *new_path, char *path, char *name)
 {
 	char			*tmp;
 	char			*path_init;
