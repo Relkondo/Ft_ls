@@ -6,7 +6,7 @@
 /*   By: scoron <scoron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/05 05:42:21 by scoron            #+#    #+#             */
-/*   Updated: 2019/03/13 20:54:47 by scoron           ###   ########.fr       */
+/*   Updated: 2019/03/13 22:40:56 by scoron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,19 +19,15 @@ static void		path_copy(t_lsbox *lsbox, char *new_path, char *path, char *name)
 
 	tmp = new_path;
 	path_init = path;
-	//usleep(200000);
 	if (ft_strcmp(name, "/") && (ft_strcmp(path, ".") || lsbox->opt.cap_r))
 	{
-		//ft_printf("1name : %s, path : %s\n", name, path);
 		while (path && *path)
 			*(tmp++) = *(path++);
 		if (ft_strcmp(path_init, "/"))
 			*(tmp++) = '/';
 	}
-	//ft_printf("2name : %s, path : %s, new_path : %s\n", name, path, new_path);
 	while (name && *name)
 		*(tmp++) = *(name++);
-	//ft_printf("3name : %s, path : %s, new_path : %s\n", name, path, new_path);
 }
 
 void		path(t_lsbox *lsbox, t_args *args, char *path, char *name)
