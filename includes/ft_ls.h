@@ -6,7 +6,7 @@
 /*   By: scoron <scoron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/03 12:40:38 by scoron            #+#    #+#             */
-/*   Updated: 2019/03/13 19:34:32 by scoron           ###   ########.fr       */
+/*   Updated: 2019/03/14 12:20:12 by scoron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -208,8 +208,6 @@ void				loop_no_file(t_lsbox *lsbox);
 void				loop_root_dirs(t_lsbox *lsbox);
 void				loop_init(t_lsbox *lsbox);
 void				loop_root_files(t_lsbox *lsbox);
-t_lsbox				init_lsbox(int argc, char **argv);
-void				parsing(t_lsbox *lsbox);
 int					main(int argc, char **argv);
 void				assign_sort(t_lsbox *lsbox);
 void				opt_effect(t_lsbox *lsbox);
