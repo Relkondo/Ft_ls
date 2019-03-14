@@ -6,14 +6,14 @@
 #    By: scoron <scoron@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/03/03 12:40:23 by scoron            #+#    #+#              #
-#    Updated: 2019/03/13 23:10:08 by scoron           ###   ########.fr        #
+#    Updated: 2019/03/14 11:45:52 by scoron           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 
 NAME = ft_ls
 
-SRCS = parse_attr.c \
+S_NAME = parse_attr.c \
 	   calculate_lsug.c \
 	   calculate_fic.c \
 	   display.c \
@@ -33,32 +33,43 @@ SRCS = parse_attr.c \
 	   parse_opt.c \
 	   path.c \
 
-OBJS = $(SRCS:.c=.o)
+S_PATH = srcs/
+
+SRCS = $(addprefix $(S_PATH), $(S_NAME))
+
+O_PATH = objs/
+
+OBJS = $(addprefix $(O_PATH), $(S_NAME:.c=.o))
 
 HEADER = ft_ls.h
 
 FLAGS = -Wall -Wextra -Werror
 
+L_PATH = libft/
+
+LIB = $(addprefix $(S_PATH), $(L_PATH))
+
 all : $(NAME)
 
 $(NAME) : lib $(OBJS)
-	@gcc -o $(NAME) $(OBJS) $(FLAGS) -I libft/includes -L libft/ -lft
+	@gcc -o $(NAME) $(OBJS) $(FLAGS) -I libft/includes -L $(LIB) -lft
 
-%.o : %.c includes/$(HEADER)
+$(O_PATH)%.o : $(S_PATH)%.c includes/$(HEADER)
+	@mkdir -p $(O_PATH)
 	@clang $(FLAGS) -I includes -c $< -o $@
 
 clean :
-	@make -C libft/ clean
-	@/bin/rm -f $(OBJS)
+	@make -C $(LIB) clean
+	@/bin/rm -rf $(O_PATH)
 
 fclean : clean
-	@make -C libft/ fclean
+	@make -C $(LIB) fclean
 	@/bin/rm -f $(NAME)
 
 re : fclean all
 
 lib :
-	@make -C libft/
+	@make -C $(LIB)
 
 test : $(NAME)
 	./$(NAME)
