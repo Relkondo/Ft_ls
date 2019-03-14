@@ -6,14 +6,14 @@
 /*   By: scoron <scoron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/03 12:39:50 by scoron            #+#    #+#             */
-/*   Updated: 2019/03/14 12:19:33 by scoron           ###   ########.fr       */
+/*   Updated: 2019/03/14 12:33:29 by scoron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 #include <sys/ioctl.h>
 
-static t_lsbox		init_lsbox(int argc, char **argv)
+static t_lsbox	init_lsbox(int argc, char **argv)
 {
 	t_lsbox			lsbox;
 	struct winsize	wsize;
@@ -43,7 +43,7 @@ static void		parsing(t_lsbox *lsbox)
 	register_attr(lsbox);
 }
 
-static void	init_headers(t_lsbox *lsbox)
+static void		init_headers(t_lsbox *lsbox)
 {
 	t_args			*args;
 	int				headers;
@@ -66,7 +66,7 @@ static void	init_headers(t_lsbox *lsbox)
 	}
 }
 
-int			main(int argc, char **argv)
+int				main(int argc, char **argv)
 {
 	t_lsbox		lsbox;
 

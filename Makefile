@@ -6,7 +6,7 @@
 #    By: scoron <scoron@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/03/03 12:40:23 by scoron            #+#    #+#              #
-#    Updated: 2019/03/14 12:14:05 by scoron           ###   ########.fr        #
+#    Updated: 2019/03/14 12:36:42 by scoron           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,11 +33,11 @@ S_NAME = parse_attr.c \
 	   parse_opt.c \
 	   path.c \
 
-S_PATH = srcs/
+S_PATH = src/
 
 SRCS = $(addprefix $(S_PATH), $(S_NAME))
 
-O_PATH = objs/
+O_PATH = obj/
 
 OBJS = $(addprefix $(O_PATH), $(S_NAME:.c=.o))
 
