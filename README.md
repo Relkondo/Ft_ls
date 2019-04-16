@@ -56,7 +56,6 @@ It's pretty simple, instead of calling `ls`, call `./ft_ls` from the root direct
 
 ### Notes
 
-- You can find the project instructions by [clicking here][./subject.pdf]
-- No need to mention the odd spacing in files, I'm using a tab size of 4.
+- You can find the project instructions by [clicking here](./subject.pdf)
 - I know comments would have been super useful, this is kind of a big code base, but I'm trying to go fast in my school program, I'll make sure to add them later.
 - There are probably better ways to implement it, but we are limited by a set of functions at my school (just to make it harder and give us a deeper understanding of what's happening in the back), please, review the subject before you explain how `X` or `Y` would have been a better way to do it ;)
